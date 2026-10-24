@@ -1,111 +1,961 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#244a3c"><title>Lazo · Estudio de prompts</title><meta name="description" content="Diseña prompts de fotografía comercial para colas y diademas artesanales para cabello. Personaliza la modelo, el producto y la escena."><style>
-:root{--ink:#223e33;--muted:#69736b;--paper:#f6f5ee;--card:#fffef9;--line:#dce0d5;--accent:#c8dc95;--rose:#eee0d6}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{outline-offset:4px}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}header{height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:1px solid var(--line);background:var(--card)}.brand{display:flex;align-items:center;gap:13px}.mark{width:39px;height:39px;background:var(--ink);color:var(--accent);border-radius:50%;display:grid;place-items:center;font:30px Georgia}.wordmark{font:30px Georgia;letter-spacing:-1.5px}.brand small{margin-left:12px;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-left:1px solid var(--line);padding-left:20px}.pill{font-size:11px;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:7px}.dot{width:7px;height:7px;border-radius:100%;background:#779347}.shell{max-width:1500px;margin:auto;padding:40px 4vw 60px}.intro{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:30px}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:#7b795e}.intro h1{font:clamp(32px,3.4vw,49px)/1.13 Georgia;margin:9px 0 12px;letter-spacing:-1.4px}.intro p{max-width:650px;color:var(--muted);margin:0}.intro .edition{max-width:220px;font-size:12px;border-left:1px solid #b8c7b7;padding-left:20px}.workspace{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(340px,1fr);gap:28px;align-items:start}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;overflow:hidden}.step{padding:25px 28px;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.stephead{display:flex;align-items:center;gap:12px;margin-bottom:18px}.num{font-size:11px;width:27px;height:27px;display:grid;place-items:center;border:1px solid #b8c6b3;border-radius:50%}h2{font:24px Georgia;margin:0;letter-spacing:-.4px}h3{font-size:13px;margin:20px 0 10px}.helper{font-size:12px;color:var(--muted);margin:8px 0 0}.presets{display:flex;flex-wrap:wrap;gap:8px}.chip,.secondary{background:transparent;border:1px solid #cbd3c5;border-radius:7px;padding:9px 12px;color:var(--ink);font-size:12px}.chip:hover,.secondary:hover{background:#edf1e4}.chip.active{background:var(--ink);color:#fff}.upload{position:relative;border:1px dashed #b5c0ac;background:#f3f4eb;border-radius:9px;padding:21px;text-align:center;display:block;cursor:pointer}.upload strong{font-size:13px;display:block}.upload input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.upload:focus-within{outline:2px solid var(--ink)}.upload svg{width:28px;height:28px;margin-bottom:5px}.thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.thumb{position:relative;width:94px}.thumb img{width:94px;height:85px;object-fit:contain;background:#eee;border-radius:7px}.thumb button{position:absolute;right:3px;top:3px;border:0;background:#fff;border-radius:50%;width:24px;height:24px}.thumb span{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 18px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;font-weight:600}.field.full{grid-column:1/-1}select,input[type=text],input[type=number],textarea{width:100%;border:1px solid #d5dbcf;border-radius:6px;background:#fffefb;padding:10px;color:#2b3b31;font-size:13px;min-height:41px}textarea{resize:vertical;line-height:1.6}select{padding-right:24px}details{border-top:1px solid var(--line);margin-top:21px;padding-top:14px}summary{cursor:pointer;font-size:13px;font-weight:600}details .grid{margin-top:17px}.checks{display:grid;gap:11px;margin-top:17px}.check{display:flex;align-items:flex-start;gap:9px;font-size:12px}.check input{accent-color:var(--ink);width:16px;height:16px;margin:2px 0}.right{position:sticky;top:22px}.outputhead{background:var(--ink);color:#fffef8;padding:25px 25px 21px}.outputhead .eyebrow{color:#d1dfa9}.outputhead h2{font-size:29px;margin:8px 0}.outputhead p{font-size:12px;color:#d7dfd4;margin:0}.outputbody{padding:22px 25px}.segmented{display:flex;gap:3px;background:#eef0e8;padding:4px;border-radius:7px;margin-bottom:17px}.segmented button{flex:1;border:0;background:transparent;color:var(--muted);font-size:12px;padding:8px;border-radius:5px}.segmented .active{background:#fff;box-shadow:0 1px 4px #0001;color:var(--ink)}#prompt{min-height:370px;max-height:65vh;background:#f7f7f1;border:0;font-size:12px;line-height:1.8;padding:17px;resize:vertical}.outputmeta{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin:10px 0 16px}.primary{background:var(--ink);color:white;border:0;border-radius:7px;padding:13px 16px;font-size:13px;font-weight:600}.primary:hover{background:#345e4d}.copy{width:100%;background:var(--accent);color:#213d2f}.copy:hover{background:#bad082}.actions{display:flex;gap:8px;margin-top:9px}.actions button{flex:1}.notice{background:#f1eadf;border-radius:8px;padding:13px 15px;font-size:12px;margin-top:18px;color:#675b42}.how{padding:23px 4px}.how h3{margin:0 0 10px;font:20px Georgia}.how ol{padding-left:20px;font-size:12px;color:var(--muted);display:grid;gap:9px}.how b{color:var(--ink)}.saved{border-top:1px solid var(--line);padding-top:15px;margin-top:18px}.savedrow{display:flex;gap:6px;margin-top:9px}.savedrow select{min-width:0;flex:1}.savedrow button{flex:0}.banner{background:#eaf0dc;border:1px solid #d4dfbd;border-radius:7px;font-size:12px;padding:12px;margin-top:14px}.hidden{display:none!important}footer{margin-top:30px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#223e33;color:white;box-shadow:0 4px 20px #0002;padding:13px 22px;border-radius:8px;z-index:20;font-size:13px;max-width:90vw}a{color:inherit} @media(min-width:1350px){.grid{grid-template-columns:1fr 1fr 1fr}}@media(max-width:900px){.workspace{grid-template-columns:1fr}.right{position:static}.intro .edition{display:none}#prompt{min-height:330px}.shell{padding:25px 20px}.brand small{font-size:9px}.step{padding:23px}}@media(max-width:480px){header{padding:0 18px;height:70px}.brand small{display:none}.grid{grid-template-columns:1fr 1fr;gap:12px}.field.full{grid-column:1/-1}.intro h1{font-size:34px}.step{padding:20px 16px}.outputbody{padding:20px 16px}.pill{font-size:9px}.shell{padding:24px 12px}.intro{margin-bottom:22px}select{font-size:12px}.savedrow{flex-wrap:wrap}.savedrow select{flex-basis:100%}}@media(prefers-reduced-motion:no-preference){button{transition:background .15s}}
-</style></head><body>
-<header><div class="brand"><span class="mark" aria-hidden="true">✳</span><span class="wordmark">lazo.</span><small>Estudio de prompts</small></div><span class="pill"><span class="dot"></span>Hecho para lo artesanal</span></header>
-<main class="shell"><section class="intro"><div><div class="eyebrow">Tu producto, en primer plano</div><h1>Imagina la foto.<br>Construye el prompt.</h1><p>Elige la modelo y la escena. Crea instrucciones para mostrar tus colas y diademas con el detalle que merecen.</p></div><p class="edition">De una pieza hecha a mano<br>a una imagen de catálogo.<br><b>Tú decides cada detalle.</b></p></section>
-<div class="workspace"><form id="form" class="card" autocomplete="off">
-<section class="step"><div class="stephead"><span class="num">01</span><h2>Un punto de partida</h2></div><div class="presets" id="presets"></div><p class="helper">Aplica una selección inicial y luego personalízala. Conserva la descripción de tu producto.</p></section>
-<section class="step"><div class="stephead"><span class="num">02</span><h2>La pieza protagonista</h2></div><label class="upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 6h4l2-2h4l2 2h4v14H4z"/><circle cx="12" cy="12" r="4"/></svg><strong>Añade fotos de la misma pieza</strong><span class="helper">Hasta 6 imágenes · JPG, PNG o WebP · Solo vista local</span><input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-label="Añadir fotografías de referencia"></label><div id="thumbs" class="thumbs"></div><p class="helper">No se analizan ni se envían. Adjunta estas mismas fotos en la IA al pegar el prompt. Trabaja con un producto por vez.</p><div class="grid" id="productFields" style="margin-top:18px"></div><div class="checks"><label class="check"><input type="checkbox" id="faithful" checked>Priorizar fidelidad a las fotos: diseño, color, textura y proporciones.</label><label class="check"><input type="checkbox" id="hero" checked>Mantener el accesorio completo, visible y bien enfocado.</label></div></section>
-<section class="step"><div class="stephead"><span class="num">03</span><h2>La modelo</h2></div><div class="grid" id="modelFields"></div><div id="minorNote" class="banner hidden">Modo catálogo infantil y adolescente: edad explícita, personaje ficticio, cabeza y hombros, camiseta cotidiana y postura sentada natural. Se omiten complexión y maquillaje; el estilo se centra en el accesorio. La aceptación depende de la IA que utilices.</div><details><summary>Más rasgos y detalles personales</summary><div class="grid" id="detailFields"></div></details></section>
-<section class="step"><div class="stephead"><span class="num">04</span><h2>El cabello y la colocación</h2></div><div class="grid" id="hairFields"></div><p class="helper" id="hairHelp">El peinado debe permitir sujetar la pieza de forma natural. El prompt pedirá adaptar el cabello si es demasiado corto.</p></section>
-<section class="step"><div class="stephead"><span class="num">05</span><h2>La fotografía</h2></div><div class="grid" id="photoFields"></div><details><summary>Dirección de arte y acabado</summary><div class="grid" id="artFields"></div></details><div class="checks"><label class="check"><input type="checkbox" id="natural" checked>Piel y cabello naturales, sin retoque plástico.</label><label class="check"><input type="checkbox" id="noText" checked>Sin texto añadido, marcas de agua ni logotipos inventados.</label></div><div class="field" style="margin-top:20px"><label for="extra">Otras instrucciones</label><textarea id="extra" rows="3" placeholder="Ej.: dejar espacio a la izquierda para colocar el nombre de mi marca después."></textarea></div><div class="notice">El prompt guía a la IA; no garantiza una réplica exacta. Antes de publicar, compara la imagen generada con tu producto real.</div></section>
-</form>
-<aside class="right"><section class="card"><div class="outputhead"><div class="eyebrow">Tu dirección creativa</div><h2>Listo para crear.</h2><p>Un prompt completo, que cambia contigo.</p></div><div class="outputbody"><div class="segmented" role="group" aria-label="Idioma del prompt"><button id="es" class="active" type="button" aria-pressed="true">Español</button><button id="en" type="button" aria-pressed="false">English</button></div><label class="helper" for="prompt">Prompt generado · puedes editarlo aquí</label><textarea id="prompt" spellcheck="false" aria-label="Prompt generado"></textarea><div class="outputmeta"><span id="count"></span><span id="autostatus">Se actualiza al elegir</span></div><button type="button" id="copy" class="primary copy">Copiar prompt <span aria-hidden="true">↗</span></button><div class="actions"><button type="button" id="regenerate" class="secondary">Regenerar</button><button type="button" id="download" class="secondary">Descargar .txt</button></div><p id="englishNote" class="helper hidden">Las opciones se convierten al inglés. Los campos que escribas a mano conservan su idioma.</p><div class="saved"><label class="field"><span style="font-size:12px;font-weight:600">Guarda una combinación</span><input id="saveName" type="text" maxlength="70" placeholder="Ej.: Catálogo juvenil · fondo crema"></label><div class="savedrow"><button type="button" id="save" class="secondary">Guardar</button><select id="savedList" aria-label="Combinaciones guardadas"><option value="">Mis combinaciones</option></select><button type="button" id="load" class="secondary">Cargar</button><button type="button" id="delete" class="secondary" aria-label="Eliminar combinación seleccionada">Eliminar</button></div><p class="helper">Se guardan en este navegador, sin fotos. Las ediciones manuales del prompt no forman parte de la combinación.</p></div></div></section><section class="how"><h3>De aquí a tu próxima imagen</h3><ol><li><b>Elige las características</b> y revisa el prompt.</li><li><b>Abre una IA que acepte imágenes</b> y adjunta las fotos originales del accesorio.</li><li><b>Pega el prompt</b> y pide generar la fotografía.</li><li><b>Comprueba el producto:</b> forma, estampado, material, tamaño y forma de colocación.</li></ol><p class="helper">Esta herramienta construye instrucciones. No genera imágenes ni necesita una cuenta de IA para funcionar. Si la IA no admite imágenes de menores, puedes presentar el accesorio en un maniquí de peinado o en una composición solo del producto, sin cambiar ni ocultar la edad.</p></section><button type="button" class="secondary" id="reset">Restablecer opciones</button></aside></div><footer><span>lazo. · Estudio de fotografía artesanal</span><span>Sin conexiones externas · Funciona sin internet</span></footer></main><div id="toast" role="status" aria-live="polite" class="hidden"></div>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1f3a2f">
+<title>Lazo · Estudio de prompts</title>
+<meta name="description" content="Crea prompts de fotografía para colas y diademas de lana tejidas a mano. Elige la persona, la pose, el ambiente y la foto, y copia el prompt.">
+<style>
+:root{
+  --ink:#1f3a2f;--ink2:#2f5545;--muted:#56605a;--paper:#f6f5ee;--card:#fffef9;--line:#d6dccf;
+  --soft:#eef1e6;--accent:#c8dc95;--accent-ink:#1d3528;--warn:#f4ecdf;--warn-ink:#5a4626;
+  --focus:#1a5fb4;--radius:14px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;z-index:50}
+.skip:focus{top:12px}
+[hidden]{display:none!important}
+
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 4vw;background:var(--card);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--accent);display:grid;place-items:center;font:26px Georgia,serif}
+.wordmark{font:28px Georgia,serif;letter-spacing:-1px}
+.tag{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+
+nav.steps{position:sticky;top:0;z-index:20;background:rgba(246,245,238,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.steps ol{list-style:none;margin:0 auto;padding:10px 4vw;display:flex;gap:8px;overflow-x:auto;max-width:1500px}
+nav.steps a{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);min-height:40px}
+nav.steps a:hover{background:var(--soft)}
+nav.steps .n{font-size:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--soft)}
+
+.shell{max-width:1500px;margin:auto;padding:28px 4vw 120px}
+.intro{margin-bottom:22px}
+.intro h1{font:clamp(30px,3.2vw,46px)/1.12 Georgia,serif;letter-spacing:-1px;margin:0 0 10px}
+.intro p{margin:0;color:var(--muted);max-width:70ch}
+.workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(340px,1fr);gap:26px;align-items:start}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+form section.card{padding:24px 26px;margin-bottom:18px}
+.sechead{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.sechead .n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid #b7c4b2;display:grid;place-items:center;font-size:13px;margin-top:2px}
+h2{font:24px/1.2 Georgia,serif;margin:0;letter-spacing:-.3px}
+.sechead p{margin:4px 0 0;color:var(--muted);font-size:14px}
+h3.sub{font-size:14px;margin:20px 0 10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px 18px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field>label,.legend{font-size:14px;font-weight:600}
+.hint{font-size:13px;color:var(--muted);margin:0}
+select,input[type=text],input[type=number],textarea{width:100%;min-height:44px;border:1px solid #c9d1c3;border-radius:8px;background:#fffefb;padding:10px 12px;font-size:15px}
+select:disabled{opacity:.55}
+textarea{resize:vertical;line-height:1.55}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{padding:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border:1px solid #c2ccbc;border-radius:999px;background:#fffefb;font-size:14px;cursor:pointer;user-select:none}
+.chip span:hover{background:var(--soft)}
+.chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip input:checked+span::before{content:"✓";margin-right:6px;font-size:13px}
+.chip input:focus-visible+span{outline:3px solid var(--focus);outline-offset:2px}
+.kindgroup+.kindgroup{margin-top:14px}
+.kindgroup .legend{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+
+.checks{display:grid;gap:12px;margin-top:18px}
+.check{display:flex;align-items:flex-start;gap:10px;font-size:15px;cursor:pointer}
+.check input{width:20px;height:20px;margin:2px 0;accent-color:var(--ink);flex:0 0 auto}
+details.more{margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+details.more summary{cursor:pointer;font-weight:600;font-size:15px;min-height:40px;display:flex;align-items:center}
+details.more .grid{margin-top:12px}
+
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.btn{min-height:44px;border-radius:9px;padding:10px 16px;border:1px solid #c2ccbc;background:#fffefb;font-size:15px;cursor:pointer}
+.btn:hover{background:var(--soft)}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.btn.primary:hover{background:var(--ink2)}
+.btn.copy{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700;width:100%;font-size:16px;min-height:52px}
+.btn.copy:hover{background:#b9d07f}
+.btn[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+
+.banner{border-radius:10px;padding:14px 16px;font-size:14px;margin-top:16px}
+.banner.minor{background:#e9f0db;border:1px solid #cddbb2}
+.banner.warn{background:var(--warn);color:var(--warn-ink)}
+.banner p{margin:0 0 8px}.banner p:last-child{margin:0}
+.banner ul{margin:6px 0 8px;padding-left:20px}
+
+aside.out{position:sticky;top:72px}
+.outhead{background:var(--ink);color:#fffef8;padding:20px 22px;border-radius:var(--radius) var(--radius) 0 0}
+.outhead h2{color:#fff;font-size:26px}
+.outhead p{margin:6px 0 0;font-size:14px;color:#d8e1d4}
+.outbody{padding:18px 22px 22px}
+.seg{display:flex;gap:4px;background:var(--soft);border-radius:10px;padding:4px;margin-bottom:12px}
+.seg label{flex:1;position:relative}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:flex;justify-content:center;align-items:center;min-height:38px;border-radius:7px;font-size:14px;color:var(--muted);cursor:pointer}
+.seg input:checked+span{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 3px #0002}
+.seg input:focus-visible+span{outline:3px solid var(--focus);outline-offset:1px}
+.seglabel{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 4px;font-weight:600}
+#prompt{min-height:380px;max-height:62vh;background:#f5f6ef;border:1px solid var(--line);font-size:14px;line-height:1.7;padding:14px}
+.meta{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);margin:8px 0 14px}
+.summary{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;padding:0;list-style:none}
+.summary li{font-size:12px;background:var(--soft);border-radius:999px;padding:4px 10px}
+.saved{border-top:1px solid var(--line);margin-top:18px;padding-top:16px}
+.saved .row{margin-top:8px}
+.saved select{flex:1;min-width:160px}
+.how{padding:18px 6px}
+.how h3{font:20px Georgia,serif;margin:0 0 8px}
+.how ol{padding-left:20px;margin:0;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.how b{color:var(--ink)}
+
+#toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:10px;box-shadow:0 6px 24px #0003;z-index:60;max-width:92vw;font-size:15px}
+.mobilebar{display:none}
+footer{margin-top:28px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+@media (max-width:980px){
+  .workspace{grid-template-columns:1fr}
+  aside.out{position:static}
+  .mobilebar{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);box-shadow:0 -4px 16px #0001}
+  .mobilebar .btn{flex:1}
+  .mobilebar .btn.copy{width:auto;min-height:48px}
+}
+@media (max-width:520px){
+  form section.card{padding:20px 16px}
+  .outbody{padding:16px}
+  .tag{display:none}
+  .grid{grid-template-columns:1fr}
+  #prompt{min-height:320px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#salida">Saltar al prompt</a>
+<header class="top">
+  <div class="brand"><span class="mark" aria-hidden="true">✳</span><span class="wordmark">lazo.</span></div>
+  <span class="tag">Estudio de prompts · tejido a mano</span>
+</header>
+<nav class="steps" aria-label="Secciones">
+  <ol>
+    <li><a href="#s-inicio"><span class="n">1</span>Inicio rápido</a></li>
+    <li><a href="#s-producto"><span class="n">2</span>Producto</a></li>
+    <li><a href="#s-persona"><span class="n">3</span>Persona</a></li>
+    <li><a href="#s-cabello"><span class="n">4</span>Cabello</a></li>
+    <li><a href="#s-pose"><span class="n">5</span>Ropa y pose</a></li>
+    <li><a href="#s-ambiente"><span class="n">6</span>Ambiente</a></li>
+    <li><a href="#s-foto"><span class="n">7</span>Fotografía</a></li>
+    <li><a href="#salida"><span class="n">↗</span>Copiar prompt</a></li>
+  </ol>
+</nav>
+
+<main class="shell" id="main">
+  <div class="intro">
+    <h1>Imagina la foto. Copia el prompt.</h1>
+    <p>Elige el accesorio, la persona y la escena. El prompt se actualiza solo y queda listo para pegarlo en la IA de imágenes que uses.</p>
+  </div>
+
+  <div class="workspace">
+    <form id="form" autocomplete="off" novalidate>
+
+      <section class="card" id="s-inicio" aria-labelledby="h-inicio">
+        <div class="sechead"><span class="n" aria-hidden="true">1</span><div><h2 id="h-inicio">Inicio rápido</h2><p>Aplica un punto de partida y ajusta lo que quieras. No cambia la descripción de tu producto.</p></div></div>
+        <div class="presets" id="presets"></div>
+        <div class="row" style="margin-top:14px">
+          <button type="button" class="btn" id="surprise">🎲 Sorpréndeme</button>
+          <button type="button" class="btn" id="reset">Restablecer todo</button>
+        </div>
+        <p class="hint" style="margin-top:8px">«Sorpréndeme» cambia persona, pose, ambiente y fotografía al azar, respetando la edad y el tipo de accesorio.</p>
+      </section>
+
+      <section class="card" id="s-producto" aria-labelledby="h-producto">
+        <div class="sechead"><span class="n" aria-hidden="true">2</span><div><h2 id="h-producto">Tu producto</h2><p>Mientras más concreta sea la descripción, más se parecerá la imagen a tu pieza.</p></div></div>
+        <div id="kindBox"></div>
+        <div class="grid" id="g-product" style="margin-top:18px"></div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="refs" checked><span><b>Adjuntaré fotos del producto en la IA.</b> El prompt le pedirá copiarlo con fidelidad y no copiar a ninguna persona de las fotos.</span></label>
+          <label class="check"><input type="checkbox" id="hero" checked><span>Mostrar el accesorio completo, nítido y sin taparlo.</span></label>
+        </div>
+      </section>
+
+      <section class="card" id="s-persona" aria-labelledby="h-persona">
+        <div class="sechead"><span class="n" aria-hidden="true">3</span><div><h2 id="h-persona">La persona</h2><p>Siempre es una persona ficticia creada por la IA.</p></div></div>
+        <div class="grid" id="g-person"></div>
+        <div id="minorNote" class="banner minor" hidden role="status">
+          <p><b>Modo catálogo infantil y juvenil activo.</b> El prompt describe una escena familiar y cotidiana, con ropa de diario apropiada para la edad y la atención puesta en el accesorio. Se ocultan maquillaje, complexión y opciones pensadas para adultas.</p>
+          <p>Ninguna redacción garantiza que todas las IA acepten imágenes de menores. Si la tuya la rechaza:</p>
+          <ul>
+            <li>prueba la vista de espaldas, que muestra el peinado sin protagonismo del rostro;</li>
+            <li>no adjuntes fotos de niñas reales: solo del producto;</li>
+            <li>o prueba con otra IA de imágenes.</li>
+          </ul>
+          <button type="button" class="btn" id="backView">Usar vista de espaldas</button>
+        </div>
+        <details class="more"><summary>Más rasgos: rostro, ojos, gafas, joyería…</summary><div class="grid" id="g-person2"></div></details>
+      </section>
+
+      <section class="card" id="s-cabello" aria-labelledby="h-cabello">
+        <div class="sechead"><span class="n" aria-hidden="true">4</span><div><h2 id="h-cabello">Cabello y colocación</h2><p id="hairHelp">El peinado se adapta al tipo de accesorio.</p></div></div>
+        <div class="grid" id="g-hair"></div>
+      </section>
+
+      <section class="card" id="s-pose" aria-labelledby="h-pose">
+        <div class="sechead"><span class="n" aria-hidden="true">5</span><div><h2 id="h-pose">Ropa, expresión y pose</h2><p>Elige una acción natural que deje ver el accesorio.</p></div></div>
+        <div id="poseBox"></div>
+        <div class="grid" id="g-pose" style="margin-top:18px"></div>
+      </section>
+
+      <section class="card" id="s-ambiente" aria-labelledby="h-ambiente">
+        <div class="sechead"><span class="n" aria-hidden="true">6</span><div><h2 id="h-ambiente">Ambiente</h2><p>Dónde está, qué clima hace y qué objetos acompañan.</p></div></div>
+        <div class="grid" id="g-scene"></div>
+      </section>
+
+      <section class="card" id="s-foto" aria-labelledby="h-foto">
+        <div class="sechead"><span class="n" aria-hidden="true">7</span><div><h2 id="h-foto">Fotografía</h2><p>Encuadre, cámara y luz. El uso elige un formato recomendado.</p></div></div>
+        <div class="grid" id="g-photo"></div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="natural" checked><span>Piel y cabello naturales, sin retoque plástico.</span></label>
+          <label class="check"><input type="checkbox" id="noText" checked><span>Sin texto, marcas de agua ni logotipos.</span></label>
+        </div>
+        <div class="field full" style="margin-top:18px">
+          <label for="extra">Otras instrucciones (opcional)</label>
+          <textarea id="extra" rows="3" maxlength="1600" placeholder="Ej.: dejar espacio a la izquierda para poner el nombre de mi marca."></textarea>
+        </div>
+        <div class="banner warn"><p>El prompt guía a la IA, pero no garantiza una copia exacta. Antes de publicar, compara la imagen con tu pieza real.</p></div>
+      </section>
+    </form>
+
+    <aside class="out" id="salida" aria-labelledby="h-salida" tabindex="-1">
+      <section class="card">
+        <div class="outhead"><h2 id="h-salida">Tu prompt</h2><p>Se actualiza con cada elección. Puedes editarlo antes de copiar.</p></div>
+        <div class="outbody">
+          <div class="row" style="gap:12px">
+            <fieldset style="flex:1;min-width:150px"><legend class="seglabel">Idioma</legend>
+              <div class="seg"><label><input type="radio" name="lang" value="es" checked><span>Español</span></label><label><input type="radio" name="lang" value="en"><span>English</span></label></div>
+            </fieldset>
+            <fieldset style="flex:1;min-width:150px"><legend class="seglabel">Versión</legend>
+              <div class="seg"><label><input type="radio" name="mode" value="full" checked><span>Detallada</span></label><label><input type="radio" name="mode" value="short"><span>Compacta</span></label></div>
+            </fieldset>
+          </div>
+          <p class="hint" id="langNote" hidden>Las opciones se traducen al inglés; lo que escribas a mano se mantiene como lo escribiste.</p>
+          <ul class="summary" id="summary" aria-label="Resumen de la selección"></ul>
+          <label for="prompt" class="vh">Prompt generado</label>
+          <textarea id="prompt" spellcheck="false" aria-describedby="count"></textarea>
+          <div class="meta"><span id="count"></span><span id="status">Se actualiza al elegir</span></div>
+          <button type="button" class="btn copy" id="copy">Copiar prompt</button>
+          <div class="row" style="margin-top:8px">
+            <button type="button" class="btn" id="download" style="flex:1">Descargar .txt</button>
+            <button type="button" class="btn" id="regen" style="flex:1">Regenerar</button>
+          </div>
+          <div class="saved">
+            <label for="saveName" class="legend">Guardar esta combinación</label>
+            <div class="row"><input type="text" id="saveName" maxlength="70" placeholder="Ej.: Diadema salvia · taller" style="flex:1;min-width:160px"><button type="button" class="btn" id="save">Guardar</button></div>
+            <div class="row"><label for="savedList" class="vh">Combinaciones guardadas</label><select id="savedList"></select><button type="button" class="btn" id="load">Cargar</button><button type="button" class="btn" id="del">Eliminar</button></div>
+            <p class="hint" style="margin-top:6px">Se guardan solo en este navegador. Los cambios hechos a mano en el texto del prompt no se guardan.</p>
+          </div>
+        </div>
+      </section>
+      <section class="how" aria-labelledby="h-how">
+        <h3 id="h-how">Cómo usarlo</h3>
+        <ol>
+          <li><b>Elige</b> las opciones y revisa el prompt.</li>
+          <li><b>Copia</b> el prompt y pégalo en tu IA de imágenes.</li>
+          <li>Si marcaste la casilla, <b>adjunta en la IA</b> 1 a 3 fotos claras del producto, sin personas.</li>
+          <li><b>Revisa</b> color, forma, puntos del tejido y colocación antes de publicar.</li>
+        </ol>
+      </section>
+    </aside>
+  </div>
+  <footer><span>lazo. · Fotografía para piezas tejidas a mano</span><span>Funciona sin internet · No envía datos</span></footer>
+</main>
+
+<div class="mobilebar" role="region" aria-label="Acciones rápidas">
+  <a class="btn" href="#salida" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Ver prompt</a>
+  <button type="button" class="btn copy" id="copy2">Copiar prompt</button>
+</div>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
-// Each option carries its own English phrase; no online translation is used.
-const fields=[
-['productFields','kind','Tipo de accesorio','Cola elástica de tela / scrunchie|Fabric scrunchie;Cola con lazo|Hair tie with a bow;Cola tejida a crochet|Crochet hair tie;Cola con cintas largas|Hair tie with long ribbons;Cola con flores|Hair tie with flowers;Cola elástica decorada|Decorated elastic hair tie;Según las fotos de referencia|As shown in the reference photos;Diadema decorada|Decorated headband'],
-['productFields','size','Tamaño visual','Mediano|Medium;Pequeño y discreto|Small and subtle;Grande|Large;Voluminoso / oversize|Oversized and voluminous;Según la referencia|As in the reference',4],
-['productFields','material','Material','Según la referencia|As in the reference;Tela de algodón|Cotton fabric;Satén|Satin;Seda|Silk;Terciopelo|Velvet;Organza|Organza;Lino|Linen;Lana|Wool;Hilo de algodón a crochet|Crocheted cotton yarn;Tela estampada|Printed fabric;Mezcla de materiales|Mixed materials'],
-['productFields','product','Descripción de la pieza','text','Ej.: verde oliva, tejido a crochet, bordes ondulados y pequeñas flores.'],
-['productFields','dimensions','Medidas reales (opcional)','text','Ej.: diámetro exterior de 10 cm; lazo de 7 cm.'],
-['productFields','preserve','Detalles que no deben cambiar','text','Ej.: número de flores, forma del lazo, costuras y patrón del tejido.'],
-['modelFields','age','Grupo de edad','Bebé, 1–2 años|Toddler, 1–2 years old;Niña, 3–5 años|Girl, 3–5 years old;Niña, 6–9 años|Girl, 6–9 years old;Preadolescente, 10–12 años|Preteen girl, 10–12 years old;Adolescente, 13–17 años|Teenage girl, 13–17 years old;Mujer joven, 18–24 años|Young adult woman, 18–24 years old;Mujer adulta, 25–34 años|Adult woman, 25–34 years old;Mujer adulta, 35–44 años|Adult woman, 35–44 years old;Mujer adulta, 45–54 años|Adult woman, 45–54 years old;Mujer adulta, 55–64 años|Adult woman, 55–64 years old;Mujer mayor, 65–74 años|Older woman, 65–74 years old;Mujer mayor, 75–84 años|Older woman, 75–84 years old;Mujer mayor, 85 años o más|Older woman, aged 85 or above',6],
-['modelFields','exactAge','Edad exacta (opcional)','number','Tiene prioridad sobre el grupo'],
-['modelFields','heritage','Apariencia / identidad cultural','Sin especificar|Unspecified;Latina, con rasgos diversos y naturales|Latina, with diverse natural features;Afrolatina|Afro-Latina;Afrodescendiente|Of African descent;Asiática oriental|East Asian;Asiática del sur|South Asian;Del sudeste asiático|Southeast Asian;De Oriente Medio|Middle Eastern;Europea|European;Mestiza latinoamericana|Mixed Latin American heritage;Personalizar en otros rasgos|Specify in additional features',1],
-['modelFields','skin','Tono de piel','Sin especificar|Unspecified;Muy claro|Very light;Claro|Light;Medio claro|Light-medium;Medio|Medium;Moreno|Brown;Moreno oscuro|Dark brown;Oscuro profundo|Deep dark',4],
-['modelFields','build','Complexión','Sin especificar|Unspecified;Delgada|Slender;Media|Average build;Robusta|Sturdy;De talla grande|Plus-size;Atlética|Athletic'],
-['modelFields','expression','Expresión','Sonrisa natural y suave|Soft natural smile;Serena|Serene;Alegre y espontánea|Joyful and candid;Segura y tranquila|Confident and relaxed;Concentrada en su actividad|Focused on her activity;Neutral|Neutral'],
-['detailFields','face','Forma del rostro','Sin especificar|Unspecified;Ovalado|Oval;Redondo|Round;Alargado|Long;Cuadrado|Square;En forma de corazón|Heart-shaped'],
-['detailFields','eyes','Color de ojos','Sin especificar|Unspecified;Café oscuro|Dark brown;Café claro|Light brown;Miel / avellana|Hazel;Verde|Green;Azul|Blue;Gris|Gray'],
-['detailFields','features','Rasgos distintivos','Sin especificar|Unspecified;Pecas naturales|Natural freckles;Hoyuelos|Dimples;Cejas pobladas|Full eyebrows;Líneas de expresión naturales|Natural expression lines;Canas y arrugas visibles acordes con la edad|Visible gray hair and age-appropriate wrinkles'],
-['detailFields','makeup','Maquillaje (adultas)','Sin maquillaje|No makeup;Muy sutil y natural|Very subtle natural makeup;Suave de catálogo|Soft catalog makeup;Elegante y discreto|Elegant understated makeup',1],
-['detailFields','accessories','Otros accesorios','Sin accesorios que compitan con la pieza|No accessories competing with the featured accessory;Aretes pequeños y discretos|Small discreet earrings;Gafas de uso diario|Everyday eyeglasses;Collar delicado|Delicate necklace'],
-['detailFields','modelExtra','Otros rasgos de la modelo','text','Describe los rasgos concretos que deseas; evita depender solo de una nacionalidad.'],
-['hairFields','hairColor','Color del cabello','Castaño oscuro|Dark brown;Negro|Black;Castaño medio|Medium brown;Castaño claro|Light brown;Rubio oscuro|Dark blonde;Rubio claro|Light blonde;Pelirrojo|Red;Canoso / sal y pimienta|Salt-and-pepper gray;Blanco|White;Gris plateado|Silver gray;Con mechas naturales|With natural highlights;Color fantasía (detallar abajo)|Fantasy color (specify below)'],
-['hairFields','texture','Textura','Lacio|Straight;Ondulado suave|Soft waves;Ondulado marcado|Strong waves;Rizado suelto|Loose curls;Rizado definido|Defined curls;Muy rizado / afro|Coily / afro-textured',1],
-['hairFields','length','Largo','Corto, suficiente para llevar el accesorio|Short, long enough to wear the accessory;Hasta los hombros|Shoulder-length;Medio, debajo de los hombros|Medium, below the shoulders;Largo, hasta media espalda|Long, mid-back;Muy largo|Very long',3],
-['hairFields','density','Volumen','Natural y medio|Natural medium volume;Fino, poco volumen|Fine hair, low volume;Abundante|Thick and full;Muy voluminoso|Very voluminous'],
-['hairFields','style','Peinado','Cola alta|High ponytail;Cola media|Mid-height ponytail;Cola baja|Low ponytail;Media cola, cabello semirrecogido|Half-up ponytail;Moño alto|High bun;Moño bajo|Low bun;Trenza recogida con la cola|Braid secured with the hair tie;Cola lateral|Side ponytail',2],
-['hairFields','finish','Acabado del peinado','Natural, con algunos cabellos sueltos|Natural, with a few flyaways;Pulido y ordenado|Smooth and tidy;Relajado y cotidiano|Relaxed and everyday;Textura definida, sin rigidez|Defined texture without stiffness'],
-['hairFields','hairExtra','Detalle de cabello o colocación','text','Ej.: lazo orientado hacia la cámara; conservar el rizo natural.'],
-['photoFields','purpose','Uso de la imagen','Catálogo de producto|Product catalog;Tienda en línea|Online shop;Publicación para redes sociales|Social media post;Historia vertical / reel|Vertical story / reel cover;Campaña de marca|Brand campaign;Fotografía de estilo de vida|Lifestyle photography'],
-['photoFields','frame','Encuadre','Primer plano de cabello y accesorio|Close-up of hair and accessory;Cabeza y hombros|Head and shoulders;Plano medio, de cintura hacia arriba|Medium shot, waist up;Plano de medio cuerpo desde atrás|Half-body shot from behind;Plano entero, accesorio aún reconocible|Full-body shot, accessory still recognizable',1],
-['photoFields','angle','Ángulo de cámara','Tres cuartos desde atrás|Rear three-quarter view;Vista posterior|Back view;Perfil con el accesorio visible|Profile with the accessory visible;Tres cuartos frontal, con el accesorio visible|Front three-quarter view with the accessory visible;Detalle desde atrás y ligeramente arriba|Close-up from behind and slightly above'],
-['photoFields','pose','Pose / acción','Girar suavemente la cabeza|Gently turn her head;Sentada de forma natural|Sitting naturally;De pie y relajada|Standing relaxed;Caminar despacio|Walking slowly;Acomodar el cabello sin tapar el accesorio|Adjusting hair without covering the accessory;Mirar hacia un lado|Looking to one side;Leer o realizar una actividad tranquila|Reading or doing a quiet activity'],
-['photoFields','clothes','Vestuario','Blusa lisa en tono neutro|Plain neutral-colored blouse;Camiseta de algodón lisa|Plain cotton T-shirt;Vestido sencillo y casual|Simple casual dress;Camisa de lino|Linen shirt;Suéter tejido sencillo|Simple knit sweater;Ropa deportiva discreta|Understated sportswear;Vestuario elegante y sobrio|Elegant understated outfit;Ropa infantil cómoda|Comfortable children’s clothing'],
-['photoFields','background','Fondo / lugar','Estudio, fondo crema liso|Studio, plain cream background;Estudio, fondo blanco|Studio, white background;Estudio, fondo gris suave|Studio, soft gray background;Estudio, fondo pastel|Studio, pastel background;Interior luminoso y sencillo|Bright simple interior;Jardín desenfocado|Softly blurred garden;Parque con vegetación|Park with greenery;Cafetería discreta|Understated café;Pared de textura natural|Natural textured wall;Exterior urbano tranquilo|Quiet urban setting'],
-['photoFields','lighting','Iluminación','Luz de estudio suave y difusa|Soft diffused studio lighting;Luz natural de ventana|Natural window light;Exterior en sombra abierta|Outdoor open shade;Luz cálida de atardecer|Warm golden-hour light;Luz neutra para reproducir el color|Neutral light for accurate color reproduction'],
-['photoFields','ratio','Formato','Vertical 4:5|Portrait 4:5;Cuadrado 1:1|Square 1:1;Vertical 9:16|Portrait 9:16;Horizontal 3:2|Landscape 3:2;Horizontal 16:9|Landscape 16:9;Vertical 2:3|Portrait 2:3'],
-['artFields','mood','Estilo de campaña','Natural y artesanal|Natural and artisanal;Minimalista|Minimalist;Elegante y delicado|Elegant and delicate;Cálido y cotidiano|Warm and everyday;Juvenil y alegre|Youthful and cheerful;Editorial sobrio|Understated editorial;Romántico suave|Soft romantic'],
-['artFields','palette','Paleta del entorno','Neutros que contrasten con el accesorio|Neutrals that contrast with the accessory;Cálidos y tierra|Warm earth tones;Pasteles suaves|Soft pastels;Fríos suaves|Soft cool tones;Blancos y crema|White and cream;Colores complementarios al producto|Colors complementary to the product'],
-['artFields','focus','Profundidad de campo','Accesorio y cabello nítidos, fondo suave|Sharp accessory and hair, soft background;Toda la cabeza y el accesorio enfocados|Entire head and accessory in focus;Detalle textil muy nítido, fondo desenfocado|Crisp textile detail, blurred background'],
-['artFields','composition','Composición','Accesorio como punto focal|Accessory as focal point;Accesorio en un tercio de la imagen|Accessory on one third of the image;Espacio libre a la izquierda|Negative space on the left;Espacio libre a la derecha|Negative space on the right;Espacio libre arriba|Negative space at the top'],
-['artFields','sceneExtra','Detalles de escena','text','Ej.: blusa color marfil; fondo beige más claro que la pieza.']
+let lang='es',mode='full',toastTimer;
+const T=(es,en)=>lang==='en'?en:es;
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* Opciones: "clave | español | inglés | etiquetas". Las líneas "# Grupo" abren un grupo.
+   Etiquetas: A = solo adultas · K = solo menores · N = no para bebés · B = solo bebés
+              C = solo colas · D = solo diademas. La clave "none" no se escribe en el prompt. */
+function P(str){let g=null;return str.trim().split('\n').map(l=>l.trim()).filter(Boolean).flatMap(l=>{if(l.startsWith('#')){g=l.slice(1).trim();return [];}const [k,es,en,t='']=l.split('|').map(x=>x.trim());return [{k,es,en,g,tags:t.split(/\s+/).filter(Boolean)}];});}
+
+const KINDS=P(`
+# Colas
+cola-scrunchie | cola tipo scrunchie tejida en lana | hand-knitted wool scrunchie-style hair tie | cola
+cola-lazo | cola con lazo tejido | hand-knitted hair tie with a knitted bow | cola
+cola-flores | cola con flores tejidas | hair tie with crocheted wool flowers | cola
+cola-tiras | cola con tiras largas tejidas | hair tie with long knitted ties | cola
+cola-forrada | elástico forrado a crochet | crochet-covered elastic hair tie | cola
+# Diademas
+diad-cinta | diadema tipo cinta ancha tejida | wide hand-knitted headband that wraps around the head | cinta
+diad-turbante | diadema tejida con nudo frontal (tipo turbante) | knitted headband with a front knot (turban style) | cinta
+diad-trenzada | diadema trenzada de lana | braided wool headband | cinta
+diad-aro | diadema de aro forrada en lana | alice band wrapped in yarn | aro
+diad-aro-flores | diadema de aro con flores tejidas | alice band with crocheted flowers | aro
+diad-aro-lazo | diadema de aro con lazo tejido | alice band with a knitted bow | aro
+`);
+
+const AGES=[
+ ['b0','Bebé, 6–11 meses','una bebé de 6 a 11 meses','a baby girl aged 6 to 11 months',0,0],
+ ['b1','Bebé, 1–2 años','una bebé de 1 a 2 años','a toddler girl aged 1 to 2',1,2],
+ ['c3','Niña, 3–5 años','una niña de 3 a 5 años','a girl aged 3 to 5',3,5],
+ ['c6','Niña, 6–9 años','una niña de 6 a 9 años','a girl aged 6 to 9',6,9],
+ ['c10','Niña, 10–12 años','una niña de 10 a 12 años','a girl aged 10 to 12',10,12],
+ ['t13','Adolescente, 13–15 años','una adolescente de 13 a 15 años','a teenage girl aged 13 to 15',13,15],
+ ['t16','Adolescente, 16–17 años','una adolescente de 16 a 17 años','a teenage girl aged 16 to 17',16,17],
+ ['a18','Mujer joven, 18–24 años','una mujer joven de 18 a 24 años','a young woman aged 18 to 24',18,24],
+ ['a25','Mujer adulta, 25–34 años','una mujer adulta de 25 a 34 años','an adult woman aged 25 to 34',25,34],
+ ['a35','Mujer adulta, 35–44 años','una mujer adulta de 35 a 44 años','an adult woman aged 35 to 44',35,44],
+ ['a45','Mujer adulta, 45–54 años','una mujer adulta de 45 a 54 años','an adult woman aged 45 to 54',45,54],
+ ['a55','Mujer adulta, 55–64 años','una mujer adulta de 55 a 64 años','an adult woman aged 55 to 64',55,64],
+ ['o65','Mujer mayor, 65–74 años','una mujer mayor de 65 a 74 años','an older woman aged 65 to 74',65,74],
+ ['o75','Mujer mayor, 75–84 años','una mujer mayor de 75 a 84 años','an older woman aged 75 to 84',75,84],
+ ['o85','Mujer mayor, 85 años o más','una mujer mayor de 85 años o más','an older woman aged 85 or over',85,110]
+].map(([k,ui,es,en,min,max])=>({k,ui,es,en,min,max,tags:[],g:max<3?'Bebés':max<13?'Niñas':max<18?'Adolescentes':max<65?'Adultas':'Mayores'}));
+
+/* Definición de campos */
+const F=[
+ // Producto
+ {id:'technique',box:'g-product',es:'Técnica',en:'Technique',def:'crochet',o:P(`
+  crochet | tejido a crochet (ganchillo) | crocheted
+  agujas | tejido a dos agujas | knitted on two needles
+  mixto | crochet y dos agujas combinados | a mix of crochet and needle knitting
+  none | según la foto de referencia | as in the reference photo`)},
+ {id:'fiber',box:'g-product',es:'Tipo de lana o hilo',en:'Yarn',def:'acrilica',o:P(`
+  acrilica | lana acrílica suave | soft acrylic yarn
+  merino | lana merino | merino wool
+  algodon | hilo de algodón | cotton yarn
+  chenille | chenille aterciopelado | velvety chenille yarn
+  mohair | mohair esponjoso | fluffy mohair
+  chunky | lana gruesa (chunky) | chunky yarn
+  fina | lana fina | fine yarn
+  none | según la foto de referencia | as in the reference photo`)},
+ {id:'colors',box:'g-product',type:'text',full:true,es:'Colores del producto',en:'Product colors',ph:'Ej.: verde salvia con flores color crema'},
+ {id:'pattern',box:'g-product',es:'Diseño del tejido',en:'Knit pattern',def:'liso',o:P(`
+  liso | liso, de un solo color | solid, single color
+  rayas | a rayas | striped
+  degradado | en degradado | ombré gradient
+  multicolor | multicolor | multicolored
+  jaspeado | jaspeado | heathered
+  trenzas | con punto trenzado | cable-knit
+  calado | con punto calado | openwork lace stitch
+  relieve | con punto en relieve (popcorn o burbuja) | textured popcorn or bobble stitch
+  none | según la foto de referencia | as in the reference photo`)},
+ {id:'ornament',box:'g-product',es:'Adorno',en:'Embellishment',def:'none',o:P(`
+  none | sin adorno extra | no extra embellishment
+  flores | flores tejidas | crocheted flowers
+  hojas | hojas tejidas | crocheted leaves
+  lazo | lazo tejido | knitted bow
+  botones | botones de madera | wooden buttons
+  perlas | perlas pequeñas | small pearls
+  pompon | pompón de lana | wool pompom`)},
+ {id:'size',box:'g-product',es:'Tamaño visual',en:'Visual size',def:'mediano',o:P(`
+  pequeno | pequeño y discreto | small and subtle
+  mediano | mediano | medium
+  grande | grande y voluminoso | large and voluminous
+  none | según la foto de referencia | as in the reference photo`)},
+ {id:'description',box:'g-product',type:'text',full:true,es:'Descripción libre (opcional)',en:'Description',ph:'Ej.: borde ondulado, tres flores pequeñas a un lado, puntos apretados.'},
+ {id:'preserve',box:'g-product',type:'text',full:true,es:'Detalles que no deben cambiar (opcional)',en:'Essential details',ph:'Ej.: número de flores, forma del lazo, ancho de la cinta.'},
+ // Persona
+ {id:'age',box:'g-person',es:'Edad',en:'Age',def:'a25',o:AGES},
+ {id:'exactAge',box:'g-person',type:'number',es:'Edad exacta (opcional)',en:'Exact age',ph:'Tiene prioridad sobre el grupo'},
+ {id:'heritage',box:'g-person',es:'Apariencia / origen',en:'Appearance',def:'latina',o:P(`
+  none | sin especificar | unspecified
+  latina | latina, con rasgos diversos | Latina with diverse features
+  afrolatina | afrolatina | Afro-Latina
+  afro | afrodescendiente | of African descent
+  indigena | indígena latinoamericana | Indigenous Latin American
+  mestiza | mestiza latinoamericana | mixed Latin American heritage
+  asia-e | asiática oriental | East Asian
+  asia-s | asiática del sur | South Asian
+  asia-se | del sudeste asiático | Southeast Asian
+  medio | de Oriente Medio | Middle Eastern
+  europea | europea | European`)},
+ {id:'skin',box:'g-person',es:'Tono de piel',en:'Skin tone',def:'medio',o:P(`
+  none | sin especificar | unspecified
+  muyclaro | muy claro | very fair
+  claro | claro | fair
+  medioclaro | medio claro | light-medium
+  medio | medio | medium
+  oliva | oliva | olive
+  moreno | moreno | brown
+  morenoosc | moreno oscuro | dark brown
+  profundo | oscuro profundo | deep`)},
+ {id:'expression',box:'g-person',es:'Expresión',en:'Expression',def:'sonrisa',o:P(`
+  sonrisa | sonrisa natural y suave | soft natural smile
+  amplia | sonrisa amplia | big smile
+  alegre | alegre y espontánea | joyful and candid
+  serena | serena | serene
+  pensativa | pensativa | thoughtful
+  concentrada | concentrada en lo que hace | focused on what she is doing
+  segura | segura y tranquila | confident and relaxed
+  neutral | neutral | neutral`)},
+ {id:'gaze',box:'g-person',es:'Mirada',en:'Gaze',def:'lado',o:P(`
+  camara | mirando a la cámara | looking at the camera
+  lado | mirando fuera de cámara, hacia un lado | looking off-camera to the side
+  abajo | mirando hacia abajo | looking down
+  arriba | mirando hacia arriba | looking up
+  actividad | mirando lo que tiene en las manos | looking at what she is holding`)},
+ {id:'build',box:'g-person',adult:true,es:'Complexión',en:'Build',def:'none',o:P(`
+  none | sin especificar | unspecified
+  delgada | delgada | slender | A
+  media | media | average build | A
+  atletica | atlética | athletic | A
+  robusta | robusta | sturdy | A
+  grande | de talla grande | plus-size | A`)},
+ {id:'makeup',box:'g-person',adult:true,es:'Maquillaje',en:'Makeup',def:'sutil',o:P(`
+  none | sin maquillaje | no makeup
+  sutil | muy sutil y natural | very subtle natural makeup | A
+  catalogo | natural de catálogo | soft catalog makeup | A
+  labios | natural con labios en tono suave | natural with softly tinted lips | A
+  elegante | elegante y discreto | elegant understated makeup | A`)},
+ {id:'face',box:'g-person2',es:'Forma del rostro',en:'Face shape',def:'none',o:P(`
+  none | sin especificar | unspecified
+  ovalado | ovalado | oval
+  redondo | redondo | round
+  alargado | alargado | long
+  cuadrado | cuadrado | square
+  corazon | en forma de corazón | heart-shaped`)},
+ {id:'eyes',box:'g-person2',es:'Color de ojos',en:'Eye color',def:'none',o:P(`
+  none | sin especificar | unspecified
+  cafeosc | café oscuro | dark brown
+  cafecl | café claro | light brown
+  miel | miel / avellana | hazel
+  verde | verdes | green
+  azul | azules | blue
+  gris | grises | gray`)},
+ {id:'features',box:'g-person2',es:'Rasgo distintivo',en:'Distinctive feature',def:'none',o:P(`
+  none | sin especificar | unspecified
+  pecas | pecas naturales | natural freckles
+  hoyuelos | hoyuelos | dimples
+  cejas | cejas pobladas | full eyebrows
+  lunar | un lunar pequeño | a small beauty mark
+  lineas | líneas de expresión naturales | natural expression lines | A
+  arrugas | canas y arrugas acordes con la edad | gray hair and age-appropriate wrinkles | A`)},
+ {id:'glasses',box:'g-person2',es:'Gafas',en:'Glasses',def:'none',o:P(`
+  none | sin gafas | no glasses
+  diario | gafas de uso diario | everyday eyeglasses | N
+  redondas | gafas redondas de montura fina | thin round eyeglasses | N`)},
+ {id:'jewelry',box:'g-person2',es:'Joyería',en:'Jewelry',def:'none',o:P(`
+  none | sin joyería que compita con el accesorio | no jewelry competing with the accessory
+  aretes | aretes pequeños y discretos | small discreet earrings | N
+  argollas | aretes de argolla finos | thin hoop earrings | A
+  collar | collar delicado | delicate necklace | A
+  pulsera | pulsera fina | thin bracelet | N`)},
+ {id:'modelExtra',box:'g-person2',type:'text',full:true,es:'Otros rasgos (opcional)',en:'Other features',ph:'Describe rasgos concretos; evita depender solo de un país.'},
+ // Cabello
+ {id:'hairColor',box:'g-hair',es:'Color',en:'Hair color',def:'castosc',o:P(`
+  castosc | castaño oscuro | dark brown
+  negro | negro | black
+  castmed | castaño medio | medium brown
+  castcl | castaño claro | light brown
+  rojizo | castaño rojizo | auburn
+  rubioosc | rubio oscuro | dark blonde
+  rubiocl | rubio claro | light blonde
+  pelirrojo | pelirrojo | red
+  mechas | castaño con mechas naturales | brown with natural highlights
+  sal | canoso, sal y pimienta | salt-and-pepper gray | A
+  plata | gris plateado | silver gray | A
+  blanco | blanco | white | A`)},
+ {id:'texture',box:'g-hair',es:'Textura',en:'Hair texture',def:'ondsuave',o:P(`
+  lacio | lacio | straight
+  ondsuave | ondulado suave | soft waves
+  ondmarc | ondulado marcado | defined waves
+  rizsuelto | rizado suelto | loose curls
+  rizdef | rizado definido | defined curls
+  afro | muy rizado / afro | coily, afro-textured`)},
+ {id:'length',box:'g-hair',es:'Largo',en:'Hair length',def:'largo',o:P(`
+  bebe | cabello de bebé corto y fino | short, fine baby hair | B
+  pixie | muy corto (pixie) | very short pixie cut | D N
+  corto | corto, a la altura de la barbilla | short, chin-length | N
+  hombros | hasta los hombros | shoulder-length
+  medio | debajo de los hombros | below the shoulders | N
+  largo | largo, hasta media espalda | long, mid-back | N
+  muylargo | muy largo | very long | N`)},
+ {id:'volume',box:'g-hair',es:'Volumen',en:'Hair volume',def:'natural',o:P(`
+  natural | natural, volumen medio | natural medium volume
+  fino | fino, poco volumen | fine, low volume
+  abundante | abundante | thick and full
+  muyvol | muy voluminoso | very voluminous`)},
+ {id:'style',box:'g-hair',es:'Peinado',en:'Hairstyle',def:'colabaja',o:P(`
+  coletabb | una coleta pequeña en la coronilla | one small ponytail on top of the head | B C
+  colaalta | cola alta | high ponytail | C N
+  colamedia | cola media | mid-height ponytail | C N
+  colabaja | cola baja | low ponytail | C N
+  colalateral | cola lateral | side ponytail | C N
+  mediacola | media cola (semirrecogido) | half-up ponytail | C N
+  dosco | dos coletas | two pigtails | C N
+  monoalto | moño alto | high bun | C N
+  monobajo | moño bajo | low bun | C N
+  trenza | trenza terminada con la cola | braid finished with the hair tie | C N
+  suelto | suelto | worn down | D
+  orejas | suelto, detrás de las orejas | worn down, tucked behind the ears | D
+  semi | semirrecogido | half-up | D N
+  d-colabaja | cola baja junto con la diadema | low ponytail with the headband | D N
+  d-mono | moño bajo junto con la diadema | low bun with the headband | D N
+  d-trenzas | dos trenzas junto con la diadema | two braids with the headband | D N`)},
+ {id:'finish',box:'g-hair',es:'Acabado',en:'Hair finish',def:'natural',o:P(`
+  natural | natural, con algunos cabellos sueltos | natural, with a few flyaways
+  pulido | pulido y ordenado | smooth and tidy
+  relajado | relajado y cotidiano | relaxed and everyday
+  definido | textura definida, sin rigidez | defined texture without stiffness`)},
+ {id:'hairExtra',box:'g-hair',type:'text',full:true,es:'Detalle de colocación (opcional)',en:'Placement detail',ph:'Ej.: lazo hacia la cámara; diadema un poco inclinada a la derecha.'},
+ // Pose
+ {id:'pose',box:'poseBox',chips:true,es:'Pose o acción',en:'Pose',def:'turn',o:P(`
+  turn | girando suavemente la cabeza | gently turning her head
+  sitting | sentada de forma natural | sitting naturally
+  standing | de pie, relajada | standing relaxed | N
+  walking | caminando despacio | walking slowly | N
+  shoulder | mirando por encima del hombro | looking back over her shoulder | N
+  laugh | riendo de forma espontánea | laughing spontaneously
+  backview | de espaldas, mostrando el peinado | seen from behind, showing the hairstyle
+  touchhair | acomodándose el cabello sin tapar el accesorio | adjusting her hair without covering the accessory | N
+  adjust | ajustando el accesorio con una mano | adjusting the accessory with one hand | N
+  window | mirando por la ventana | looking out of a window | N
+  reading | leyendo un libro | reading a book | N
+  knitting | tejiendo con lana | knitting with yarn | N
+  flowers | sosteniendo un ramo de flores | holding a bouquet of flowers | N
+  cup | sosteniendo una taza humeante | holding a steaming mug | A
+  headphones | escuchando música con audífonos | listening to music with headphones | C N
+  wall | apoyada en una pared | leaning against a wall | A
+  sun | con los ojos cerrados, disfrutando el sol | eyes closed, enjoying the sunlight | A
+  drawing | dibujando con lápices de colores | drawing with colored pencils | K N
+  studying | estudiando con cuadernos | studying with notebooks | K N
+  playing | jugando con juguetes de madera | playing with wooden toys | K
+  plush | abrazando un peluche | hugging a stuffed toy | K
+  blanket | sentada sobre una manta tejida | sitting on a knitted blanket | B
+  crawling | gateando sobre una alfombra suave | crawling on a soft rug | B`)},
+ {id:'clothes',box:'g-pose',es:'Ropa',en:'Clothing',def:'sweater',o:P(`
+  sweater | suéter tejido sencillo | simple knit sweater
+  tshirt | camiseta de algodón lisa | plain cotton T-shirt
+  cardigan | cárdigan tejido | knit cardigan
+  turtle | suéter de cuello alto | turtleneck sweater | N
+  blouse | blusa lisa | plain blouse | N
+  linen | camisa de lino | linen shirt | N
+  dress | vestido sencillo de manga | simple dress with sleeves | N
+  denim | chaqueta de mezclilla | denim jacket | N
+  coat | abrigo de lana | wool coat | N
+  overall | overol de mezclilla | denim overalls | K
+  romper | enterizo de algodón de manga larga | long-sleeved cotton romper | B
+  sport | ropa deportiva discreta | understated athleisure | A
+  elegant | conjunto elegante y sobrio | elegant understated outfit | A`)},
+ {id:'clothesColor',box:'g-pose',es:'Color de la ropa',en:'Clothing color',def:'contraste',o:P(`
+  contraste | neutro que contraste con el accesorio | a neutral tone that contrasts with the accessory
+  crema | crema | cream
+  blanco | blanco | white
+  beige | beige | beige
+  gris | gris claro | light gray
+  negro | negro | black
+  marino | azul marino | navy
+  oliva | verde oliva | olive green
+  terracota | terracota | terracotta
+  mostaza | mostaza | mustard
+  rosa | rosa empolvado | dusty pink
+  chocolate | marrón chocolate | chocolate brown`)},
+ // Ambiente
+ {id:'background',box:'g-scene',es:'Lugar',en:'Setting',def:'st-cream',o:P(`
+  # Estudio
+  st-cream | estudio con fondo crema liso | studio with a plain cream backdrop
+  st-white | estudio con fondo blanco | studio with a white backdrop
+  st-gray | estudio con fondo gris suave | studio with a soft gray backdrop
+  st-pastel | estudio con fondo pastel | studio with a pastel backdrop
+  st-match | estudio con fondo de color sólido que armonice con el producto | studio with a solid backdrop that harmonizes with the product
+  st-wall | pared de textura natural (yeso o madera) | natural textured wall (plaster or wood)
+  # Interior
+  in-living | sala acogedora con mantas tejidas | cozy living room with knitted throws
+  in-workshop | taller artesanal con ovillos de lana | artisan workshop with balls of yarn
+  in-window | junto a una ventana luminosa | beside a bright window
+  in-kitchen | cocina luminosa y sencilla | bright simple kitchen
+  in-reading | rincón de lectura con libros | reading nook with books
+  in-play | sala de juegos luminosa | bright playroom | K
+  in-cafe | cafetería acogedora | cozy café | A
+  # Exterior
+  out-garden | jardín con flores, fondo desenfocado | flower garden, blurred background
+  out-park | parque con árboles | park with trees
+  out-forest | sendero de bosque | forest trail
+  out-coffee | cafetal de montaña | mountain coffee farm
+  out-mist | montaña con neblina | misty mountains
+  out-field | campo de flores silvestres | wildflower field
+  out-market | mercado artesanal | artisan market
+  out-urban | calle urbana tranquila | quiet urban street | N
+  out-beach | playa al atardecer, con ropa ligera de abrigo | beach at sunset, wearing light layers | A`)},
+ {id:'season',box:'g-scene',es:'Clima o estación',en:'Weather / season',def:'none',o:P(`
+  none | sin especificar | unspecified
+  sol | día soleado | sunny day
+  nublado | día nublado suave | soft overcast day
+  lluvia | día de lluvia ligera visto desde el interior | light rainy day seen from indoors
+  otono | ambiente otoñal con hojas | autumn atmosphere with leaves
+  frio | ambiente frío, ideal para lana | cool weather, perfect for wool
+  primavera | primavera florida | blooming spring`)},
+ {id:'timeofday',box:'g-scene',es:'Momento del día',en:'Time of day',def:'none',o:P(`
+  none | sin especificar | unspecified
+  manana | mañana | morning
+  mediodia | mediodía | midday
+  dorada | tarde, hora dorada | late afternoon golden hour
+  anochecer | anochecer con luces cálidas | dusk with warm lights`)},
+ {id:'props',box:'g-scene',es:'Objeto que acompaña',en:'Prop',def:'none',o:P(`
+  none | ninguno | none
+  ovillos | ovillos de lana y ganchillo | balls of yarn and a crochet hook
+  taza | una taza humeante | a steaming mug | N
+  libro | un libro | a book | N
+  flores | un ramo de flores | a bouquet of flowers
+  canasta | una canasta de mimbre | a wicker basket
+  manta | una manta tejida | a knitted blanket
+  juguete | juguetes de madera | wooden toys | K`)},
+ {id:'palette',box:'g-scene',es:'Paleta del entorno',en:'Palette',def:'neutros',o:P(`
+  neutros | neutros que hagan resaltar el accesorio | neutrals that make the accessory stand out
+  tierra | cálidos y tierra | warm earth tones
+  pastel | pasteles suaves | soft pastels
+  frios | fríos suaves | soft cool tones
+  crema | blancos y crema | whites and creams
+  complementarios | colores complementarios al producto | colors complementary to the product
+  mono | monocromática, en tonos del producto | monochrome in the product's tones`)},
+ {id:'mood',box:'g-scene',es:'Estilo',en:'Mood',def:'artesanal',o:P(`
+  artesanal | natural y artesanal | natural and artisanal
+  acogedor | cálido y acogedor | warm and cozy
+  minimal | minimalista | minimalist
+  elegante | elegante y delicado | elegant and delicate
+  alegre | juvenil y alegre | youthful and cheerful
+  bohemio | bohemio | bohemian
+  hygge | invernal y hogareño | wintry and homey
+  editorial | editorial sobrio | understated editorial
+  romantico | romántico suave | soft romantic`)},
+ {id:'sceneExtra',box:'g-scene',type:'text',full:true,es:'Detalle de escena (opcional)',en:'Scene detail',ph:'Ej.: sillón de madera clara; plantas al fondo.'},
+ // Fotografía
+ {id:'purpose',box:'g-photo',es:'Uso de la imagen',en:'Use',def:'catalogo',o:P(`
+  catalogo | catálogo de producto | product catalog
+  tienda | tienda en línea | online shop
+  post | publicación en redes sociales | social media post
+  historia | historia o reel vertical | vertical story or reel
+  pinterest | pin vertical | vertical pin
+  banner | banner para sitio web | website banner
+  campana | campaña de marca | brand campaign`)},
+ {id:'ratio',box:'g-photo',es:'Formato',en:'Aspect ratio',def:'45',o:P(`
+  45 | vertical 4:5 | portrait 4:5
+  11 | cuadrado 1:1 | square 1:1
+  23 | vertical 2:3 | portrait 2:3
+  916 | vertical 9:16 | portrait 9:16
+  32 | horizontal 3:2 | landscape 3:2
+  169 | horizontal 16:9 | landscape 16:9`)},
+ {id:'framing',box:'g-photo',es:'Encuadre',en:'Framing',def:'hombros',o:P(`
+  detalle | primer plano de la cabeza y el accesorio | close-up of the head and accessory
+  hombros | cabeza y hombros | head and shoulders
+  medio | plano medio, de la cintura hacia arriba | medium shot, waist up
+  americano | plano tres cuartos, hasta las rodillas | three-quarter shot, knees up
+  entero | cuerpo entero, con el accesorio reconocible | full body, accessory still recognizable`)},
+ {id:'angle',box:'g-photo',es:'Ángulo',en:'Camera angle',def:'tqf',o:P(`
+  frontal | frontal | front view
+  tqf | tres cuartos frontal | front three-quarter view
+  perfil | de perfil | profile
+  tqp | tres cuartos desde atrás | rear three-quarter view
+  posterior | desde atrás | back view
+  arriba | ligeramente desde arriba | slightly from above`)},
+ {id:'camera',box:'g-photo',es:'Estilo de cámara',en:'Camera style',def:'85',o:P(`
+  85 | profesional, retrato con lente de 85 mm | professional portrait, 85 mm lens
+  50 | profesional, mirada natural con lente de 50 mm | professional, natural 50 mm perspective
+  movil | foto de celular natural y auténtica | authentic natural smartphone photo
+  film | analógica suave con grano fino | soft analog film with fine grain
+  editorial | editorial de revista | magazine editorial`)},
+ {id:'lighting',box:'g-photo',es:'Luz',en:'Lighting',def:'suave',o:P(`
+  suave | suave y difusa de estudio | soft diffused studio light
+  ventana | natural de ventana | natural window light
+  sombra | exterior en sombra abierta | outdoor open shade
+  dorada | cálida de hora dorada | warm golden-hour light
+  contraluz | contraluz suave con borde luminoso | soft backlight with a glowing rim
+  neutra | neutra, fiel al color | neutral, color-accurate light`)},
+ {id:'dof',box:'g-photo',es:'Profundidad de campo',en:'Depth of field',def:'suave',o:P(`
+  suave | accesorio y cabello nítidos, fondo suave | sharp accessory and hair, soft background
+  cabeza | toda la cabeza nítida | whole head in focus
+  todo | todo nítido | everything in focus`)},
+ {id:'composition',box:'g-photo',es:'Composición',en:'Composition',def:'focal',o:P(`
+  focal | accesorio como punto focal | accessory as the focal point
+  tercios | regla de tercios | rule of thirds
+  izq | espacio libre a la izquierda para texto | empty space on the left for text
+  der | espacio libre a la derecha para texto | empty space on the right for text
+  arriba | espacio libre arriba para texto | empty space at the top for text`)}
 ];
-const optionMap={};
-for(const [group,id,label,options,def] of fields){const wrap=document.createElement('div');wrap.className='field'+(options==='text'?' full':'');const lab=document.createElement('label');lab.htmlFor=id;lab.textContent=label;wrap.append(lab);let el;if(options==='text'||options==='number'){el=document.createElement('input');el.type=options;el.placeholder=def||'';if(options==='number'){el.min='1';el.max='110';el.step='1';}else{el.maxLength=1600;}}else{el=document.createElement('select');optionMap[id]=options.split(';').map(x=>x.split('|'));optionMap[id].forEach((v,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=v[0];el.append(o);});el.value=String(def||0);}el.id=id;wrap.append(el);$(group).append(wrap);}
-const presets={catalog:['Catálogo',{age:6,background:0,angle:0,lighting:4,frame:1,style:2,purpose:0}],daily:['Cotidiano',{age:6,background:4,lighting:1,pose:3,clothes:1,mood:3,purpose:5}],elegant:['Elegante',{age:8,background:2,lighting:0,style:5,clothes:6,mood:2}],child:['Infantil',{age:2,background:3,lighting:0,style:3,clothes:7,mood:4,makeup:0}],teen:['Adolescente',{age:4,background:0,lighting:1,style:2,clothes:1,mood:0,makeup:0}],older:['Mujer mayor',{age:10,hairColor:7,features:5,background:4,lighting:1,style:2,mood:0}]};
-for(const [id,[name,values]] of Object.entries(presets)){const b=document.createElement('button');b.type='button';b.textContent=name;b.className='chip';b.dataset.preset=id;b.addEventListener('click',()=>{for(const [k,v]of Object.entries(values))$(k).value=String(v);$('exactAge').value='';document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));changed();toast('Punto de partida aplicado. Puedes ajustar cada detalle.');});$('presets').append(b);}
-let language='es', photoURLs=[], toastTimer;
-const checkIds=['faithful','hero','natural','noText'];const ids=fields.map(x=>x[1]).concat(['extra']);
-const defaults=Object.fromEntries(ids.map(id=>[id,$(id).value]));
-function toast(message){$('toast').textContent=message;$('toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),4500);}
-function val(id){if(id==='exactAge'){const n=Number($(id).value);return Number.isInteger(n)&&n>=1&&n<=110?String(n):'';}if(!optionMap[id])return $(id).value.trim();return optionMap[id][Number($(id).value)][language==='en'?1:0];}
-function pair(es,en){return language==='en'?en:es;}
-// Índice de 'Diadema decorada' en el selector 'kind'.
-const HEADBAND_KIND='7';
-function isHeadband(){return $('kind').value===HEADBAND_KIND;}
-function isMinor(){return val('exactAge')!==''?Number(val('exactAge'))<18:Number($('age').value)<5;}
-function getState(){return {version:1,language,values:Object.fromEntries(ids.map(id=>[id,$(id).value])),checks:Object.fromEntries(checkIds.map(id=>[id,$(id).checked]))};}
-function apply(s){if(!s||s.version!==1)return false;for(const id of ids){if(typeof s.values?.[id]!=='string')continue;const v=s.values[id];if(optionMap[id]){if(/^\d+$/.test(v)&&Number(v)<optionMap[id].length)$(id).value=v;}else if(id==='exactAge'){$(id).value=v===''?'':(Number.isInteger(Number(v))&&Number(v)>=1&&Number(v)<=110?v:'');}else $(id).value=v.slice(0,1600);}for(const id of checkIds)if(typeof s.checks?.[id]==='boolean')$(id).checked=s.checks[id];language=s.language==='en'?'en':'es';return true;}
-function persist(){try{localStorage.setItem('lazo-current-v1',JSON.stringify(getState()));$('autostatus').textContent='Opciones guardadas aquí';}catch{$('autostatus').textContent='Guardado local no disponible';}}
-const enLabels={kind:'Accessory type',size:'Size',material:'Material',heritage:'Appearance / cultural identity',skin:'Skin tone',build:'Build',face:'Face shape',eyes:'Eye color',features:'Distinctive features',expression:'Expression',accessories:'Other accessories',hairColor:'Hair color',texture:'Hair texture',length:'Hair length',density:'Hair volume',style:'Hairstyle',finish:'Hair finish',hairExtra:'Hair placement details',purpose:'Image use',frame:'Framing',angle:'Camera angle',pose:'Pose',clothes:'Clothing',background:'Background',lighting:'Lighting',ratio:'Aspect ratio',mood:'Campaign style',palette:'Environment palette',focus:'Depth of field',composition:'Composition',sceneExtra:'Scene details'};
-function sentence(label,keys){return label+keys.filter(k=>!(optionMap[k]&&$(k).value==='0'&&optionMap[k][0][0]==='Sin especificar')).filter(k=>val(k)).map(k=>(language==='en'?enLabels[k]:fields.find(f=>f[1]===k)[2])+': '+val(k)).join('; ')+'.';}
-function build(){const minor=isMinor();$('minorNote').classList.toggle('hidden',!minor);$('makeup').disabled=minor;$('build').disabled=minor;for(const [id,value] of Object.entries({frame:'1',pose:'1',clothes:'1',mood:'0'})){if(minor)$(id).value=value;$(id).disabled=minor;$(id).title=minor?'Ajuste automático del catálogo infantil y adolescente':'';}const en=language==='en';$('es').classList.toggle('active',!en);$('en').classList.toggle('active',en);$('es').setAttribute('aria-pressed',String(!en));$('en').setAttribute('aria-pressed',String(en));$('englishNote').classList.toggle('hidden',!en);
-const hb=isHeadband();const N=hb?{es:'la diadema',Es:'La diadema',en:'the headband',w:'headband'}:{es:'la cola',Es:'La cola',en:'the hair tie',w:'hair tie'};
-$('style').disabled=hb;$('style').title=hb?'Con diadema el cabello va suelto o semirrecogido; este selector no se usa':'';
-$('hairHelp').textContent=hb?'Con diadema, el selector de peinado queda inactivo: el prompt pide cabello suelto o semirrecogido y la diadema apoyada sobre la cabeza. Elige un ángulo frontal, de tres cuartos o de perfil; desde atrás casi no se ve.':'El peinado debe permitir sujetar la pieza de forma natural. El prompt pedirá adaptar el cabello si es demasiado corto.';
-const out=[];
-if(minor){out.push(pair('Crea UNA imagen de catálogo de accesorios artesanales para el cabello, con apariencia de fotografía cotidiana. Muestra a una niña o adolescente ficticia de la edad indicada usando '+N.es+' de las fotos adjuntas. La finalidad es mostrar cómo queda colocado el accesorio en el peinado. Usa las referencias únicamente para reproducir el producto y crea una persona ficticia nueva. La escena es sencilla, familiar y apropiada para su edad.','Create ONE catalog image of handmade hair accessories, with the look of an everyday photograph. Show a fictional girl or teenager of the specified age wearing '+N.en+' in the attached photos. The purpose is to demonstrate how the accessory sits in the hairstyle. Use the references only to reproduce the product and create a new fictional person. The scene is simple, family-friendly and age-appropriate.'));}else out.push(pair('Genera UNA fotografía comercial fotorrealista de una modelo femenina llevando en su cabello '+(hb?'la diadema artesanal':'la cola artesanal')+' que aparece en las imágenes de referencia adjuntas. El producto es el protagonista. La referencia corresponde al accesorio; crea una modelo nueva, sin copiar a una persona que pudiera aparecer en ella.','Generate ONE photorealistic commercial photograph of a female model wearing the handmade '+N.w+' shown in the attached reference images in her hair. The product is the main subject. Use the reference for the accessory; create a new model without copying any person who might appear in the reference.'));
-out.push(hb?pair('OBJETIVO VISUAL: La imagen debe comunicar a primera vista que la modelo lleva puesta la diadema y cómo se usa: un arco que rodea la parte superior de la cabeza, apoyado sobre el cabello detrás de la línea de nacimiento, con los extremos ocultos detrás de las orejas o bajo el cabello. Aunque el tejido o la textura fina no se distingan a esa distancia, la pieza debe reconocerse sin ambigüedad como una diadema puesta por su silueta, color, volumen y posición. No debe confundirse con una cinta en la frente, una corona, un mechón teñido ni un adorno flotante. Si hay que elegir, prioriza que se entienda el uso del accesorio y que coincidan su color y su forma, antes que el detalle fino del material.','VISUAL GOAL: The image must show at first glance that the model is wearing the headband and how it is worn: an arc over the top of the head, resting on the hair behind the hairline, with the ends tucked behind the ears or under the hair. Even if the weave or fine texture is not discernible at that distance, the piece must be unmistakably recognizable as a worn headband through its silhouette, color, volume and position. It must not read as a forehead band, a crown, a dyed strand or a floating ornament. If a trade-off is needed, prioritize clearly showing how the accessory is worn and matching its color and shape over fine material detail.'):pair('OBJETIVO VISUAL: La imagen debe comunicar a primera vista que la modelo lleva puesta la cola en el cabello y cómo se usa: rodeando y sujetando el peinado en el punto donde se recoge el cabello. Aunque el tejido o la textura fina no se distingan a esa distancia, la pieza debe reconocerse sin ambigüedad como una cola puesta por su silueta, color, volumen y posición. No debe confundirse con una mancha de color, un mechón teñido, una flor suelta ni un adorno sin función. Si hay que elegir, prioriza que se entienda el uso del accesorio y que coincidan su color y su forma, antes que el detalle fino del material.','VISUAL GOAL: The image must show at first glance that the model is wearing the hair tie and how it is worn: wrapped around and securing the hairstyle where the hair is gathered. Even if the weave or fine texture is not discernible at that distance, the piece must be unmistakably recognizable as a worn hair tie through its silhouette, color, volume and position. It must not read as a patch of color, a dyed strand, a loose flower or a purely decorative ornament. If a trade-off is needed, prioritize clearly showing how the accessory is worn and matching its color and shape over fine material detail.'));
-let product=sentence(pair('PRODUCTO: ','PRODUCT: '),['kind','material','size']);for(const [id,es,eng] of [['product','Descripción','Description'],['dimensions','Medidas reales a respetar','Actual dimensions to respect'],['preserve','Detalles imprescindibles','Essential details']])if(val(id))product+=' '+pair(es,eng)+': '+val(id)+'.';
-if($('faithful').checked)product+=' '+pair('Usa las fotos como fuente principal de la apariencia. Conserva fielmente color, forma, material, patrón, textura, tejido, costuras, adornos, volumen y proporciones. No rediseñes ni sustituyas la pieza. Si algún detalle no se ve, no inventes adornos. Si una selección contradice la referencia, prioriza la referencia.','Use the photos as the primary source for appearance. Faithfully preserve color, shape, material, pattern, texture, weave, stitching, embellishments, volume and proportions. Do not redesign or substitute the piece. Do not invent decorations where details are not visible. If a selection conflicts with the reference, prioritize the reference.');
-product+=' '+pair('Las fotos muestran distintos ángulos de una misma pieza: representa una sola unidad, '+(hb?'colocada físicamente sobre la cabeza y apoyada en el cabello':'colocada y sujeta físicamente en el cabello')+', nunca flotando ni sostenida en la mano.','The photos show different angles of the same piece: depict a single unit '+(hb?'physically worn on the head, resting on the hair':'physically secured in the hair')+', never floating or held in the hand.');out.push(product);
-let age=val('exactAge')?pair('Edad exacta: '+val('exactAge')+' años.','Exact age: '+val('exactAge')+' years.'):val('age')+'.';let model=(minor?pair('PERSONA FICTICIA Y EDAD: ','FICTIONAL PERSON AND AGE: '):pair('MODELO: ','MODEL: '))+age+' '+sentence('', (minor?['heritage','skin','face','eyes','features','expression','accessories']:['heritage','skin','build','face','eyes','features','expression','accessories']));model+=' '+(minor?pair('Apariencia cotidiana acorde con su edad, rostro al natural y expresión espontánea. Viste una camiseta opaca de cuello redondo y mangas. Está sentada cómodamente; la cámara encuadra la cabeza y los hombros para mostrar el peinado y el accesorio.','Everyday age-appropriate appearance, a natural bare face and a spontaneous expression. She wears an opaque crew-neck T-shirt with sleeves. She is sitting comfortably; the camera frames her head and shoulders to show the hairstyle and accessory.'):pair('Maquillaje: ','Makeup: ')+val('makeup')+'.');model+=' '+pair('Representa su edad con naturalidad y los rasgos indicados sin caricaturas ni estereotipos.','Represent her age naturally and the specified features without caricatures or stereotypes.');if(val('modelExtra'))model+=' '+val('modelExtra');out.push(model);
-if(hb)out.push(sentence(pair('CABELLO Y COLOCACIÓN: ','HAIR AND PLACEMENT: '),['hairColor','texture','length','density','finish','hairExtra'])+' '+pair('Cabello suelto o semirrecogido que deje ver la diadema completa. La diadema se apoya sobre la cabeza, detrás de la línea de nacimiento del cabello y hacia la coronilla, con los extremos ocultos detrás de las orejas o bajo el cabello. Ajuste natural y físicamente plausible: ni flotando sobre el cabello ni hundida en el cuero cabelludo. Si el cabello es corto, mantén la diadema bien asentada y visible.','Hair worn down or half-up so the whole headband is visible. The headband rests on the head, behind the hairline and toward the crown, with the ends tucked behind the ears or under the hair. Natural, physically plausible fit: neither floating above the hair nor sinking into the scalp. If the hair is short, keep the headband well seated and visible.'));
-else out.push(sentence(pair('CABELLO Y COLOCACIÓN: ','HAIR AND PLACEMENT: '),['hairColor','texture','length','density','style','finish','hairExtra'])+' '+pair('La pieza debe sujetar el peinado de manera anatómica y físicamente plausible. Si el largo del cabello no permite ese peinado, adapta el recogido con el mínimo cambio necesario para colocar el accesorio.','The accessory must secure the hairstyle in an anatomically and physically plausible way. If the hair length does not support that hairstyle, minimally adapt the updo to hold the accessory.'));
-out.push(sentence(pair('FOTOGRAFÍA: ','PHOTOGRAPH: '),['purpose','frame','angle','pose','clothes','background','lighting','ratio','mood','palette','focus','composition','sceneExtra'])+' '+(hb?pair('Para la diadema, prioriza vistas frontales, de tres cuartos o de perfil; una vista posterior suele ocultarla. ','For the headband, favor front, three-quarter or profile views; a back view usually hides it. '):'')+pair('Si el ángulo o la pose ocultan '+N.es+', ajusta la posición de la cabeza o de la cámara para mostrarla con claridad. La relación de aspecto es una instrucción de composición; utilízala también en los ajustes de la IA cuando estén disponibles.','If the angle or pose hides '+N.en+', adjust the head position or camera to show it clearly. The aspect ratio is a composition instruction; also select it in the AI settings when available.'));
-let quality=[];if($('hero').checked)quality.push(pair(N.Es+' debe verse completa, nítida y separada visualmente del fondo; ni manos ni cabello deben ocultar sus detalles.','Show the whole '+N.w+' sharply and distinctly from the background; neither hands nor hair should hide its details.'));if($('natural').checked)quality.push(pair('Conserva textura real de la piel y del cabello, rasgos propios de la edad y detalles textiles creíbles; evita piel plástica y retoque excesivo.','Preserve real skin and hair texture, age-appropriate features and credible textile detail; avoid plastic skin and excessive retouching.'));if($('noText').checked)quality.push(pair('No añadas texto, marcas de agua ni logotipos inventados; conserva cualquier etiqueta real visible del producto de referencia.','Do not add text, watermarks or invented logos; preserve any actual visible label on the reference product.'));quality.push(pair('Evita accesorios duplicados, cabello fusionado con el tejido, anatomía deformada y diferencias de color causadas por filtros. Prioriza la fidelidad del producto sobre el efecto artístico.','Avoid duplicated accessories, hair fused with fabric, distorted anatomy and filter-induced color shifts. Prioritize product fidelity over artistic effects.'));out.push(pair('CONTROL DE CALIDAD: ','QUALITY CONTROL: ')+quality.join(' '));if(val('extra'))out.push(pair('INSTRUCCIONES ADICIONALES: ','ADDITIONAL INSTRUCTIONS: ')+val('extra'));$('prompt').value=out.join('\n\n');count();}
-function count(){$('count').textContent=$('prompt').value.length.toLocaleString('es')+' caracteres';}
-function changed(){build();persist();}
-$('form').addEventListener('submit',e=>e.preventDefault());$('form').addEventListener('input',e=>{if(e.target.id==='photos')return;if(e.target.id==='exactAge'&&!e.target.validity.valid){$('exactAge').setCustomValidity('Escribe una edad entera entre 1 y 110 años.');$('exactAge').reportValidity();return;}if(e.target.id==='exactAge')$('exactAge').setCustomValidity('');document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));if(e.target.id==='kind'&&isHeadband()&&['0','1','4'].includes($('angle').value)){$('angle').value='3';toast('Con diadema se cambió el ángulo a tres cuartos frontal: desde atrás casi no se ve.');}changed();});
-// Clear custom validity before checking a corrected age.
-$('exactAge').addEventListener('input',()=>{$('exactAge').setCustomValidity('');},true);
-$('prompt').addEventListener('input',()=>{count();$('autostatus').textContent='Editado a mano · cambiar opciones lo regenera';});for(const l of ['es','en'])$(l).addEventListener('click',()=>{language=l;changed();});$('regenerate').onclick=()=>{changed();toast('Prompt regenerado con tus selecciones.');};
-$('copy').onclick=async()=>{const t=$('prompt');try{if(!navigator.clipboard?.writeText)throw Error();await navigator.clipboard.writeText(t.value);toast('Prompt copiado. Adjunta también las fotos en la IA.');}catch{t.focus();t.select();t.setSelectionRange(0,t.value.length);let ok=false;try{ok=document.execCommand('copy');}catch{}toast(ok?'Prompt copiado.':'Texto seleccionado: usa Copiar o Ctrl/Cmd + C.');}};
-function downloadText(text,name,type){const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);}
-$('download').onclick=()=>downloadText($('prompt').value,(isHeadband()?'prompt-diadema-':'prompt-cola-')+language+'.txt','text/plain;charset=utf-8');
-function saved(){try{const a=JSON.parse(localStorage.getItem('lazo-saved-v1')||'[]');return Array.isArray(a)?a:[];}catch{return [];}}
-function listSaved(){const s=$('savedList');s.replaceChildren(new Option('Mis combinaciones',''));saved().forEach((x,i)=>s.add(new Option(String(x.name),String(i))));$('load').disabled=!saved().length;$('delete').disabled=!saved().length;}
-$('save').onclick=()=>{const name=$('saveName').value.trim();if(!name){toast('Escribe un nombre para esta combinación.');$('saveName').focus();return;}const a=saved();if(a.length>=30){toast('Llegaste a 30 combinaciones. Elimina alguna para guardar otra.');return;}a.push({name,state:getState()});try{localStorage.setItem('lazo-saved-v1',JSON.stringify(a));listSaved();$('savedList').value=String(a.length-1);toast('Combinación guardada en este navegador.');}catch{toast('El navegador no permite guardar. Puedes descargar el prompt.');}};
-$('load').onclick=()=>{const key=$('savedList').value;if(key===''){toast('Selecciona una combinación.');return;}const item=saved()[Number(key)];if(item&&apply(item.state)){$('saveName').value=item.name;changed();toast('Combinación cargada. Las fotos no cambian.');}};
-$('delete').onclick=()=>{const key=$('savedList').value;if(key===''){toast('Selecciona una combinación.');return;}const a=saved();a.splice(Number(key),1);try{localStorage.setItem('lazo-saved-v1',JSON.stringify(a));listSaved();toast('Combinación eliminada.');}catch{toast('No se pudo eliminar.');}};
-$('reset').onclick=()=>{for(const [id,v]of Object.entries(defaults))$(id).value=v;$('exactAge').setCustomValidity('');for(const id of checkIds)$(id).checked=true;language='es';document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));changed();toast('Opciones restablecidas. Se conservan tus fotos y combinaciones.');};
-function renderPhotos(){const target=$('thumbs');target.replaceChildren();photoURLs.forEach((x,i)=>{const div=document.createElement('div');div.className='thumb';const img=document.createElement('img');img.src=x.url;img.alt='Referencia '+(i+1)+': '+x.name;const b=document.createElement('button');b.type='button';b.textContent='×';b.setAttribute('aria-label','Quitar referencia '+(i+1));b.onclick=()=>{URL.revokeObjectURL(x.url);photoURLs.splice(i,1);renderPhotos();};const s=document.createElement('span');s.textContent=x.name;div.append(img,b,s);target.append(div);});}
-$('photos').onchange=()=>{let skipped=0;for(const f of $('photos').files){if(photoURLs.length>=6||!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>15*1024*1024){skipped++;continue;}photoURLs.push({url:URL.createObjectURL(f),name:f.name});}renderPhotos();$('photos').value='';if(skipped)toast('Algunas imágenes no se añadieron: máximo 6, de hasta 15 MB cada una, en JPG, PNG o WebP.');};
-try{apply(JSON.parse(localStorage.getItem('lazo-current-v1')));}catch{}listSaved();build();
-</script></body></html>
+const FI=Object.fromEntries(F.map(f=>[f.id,f]));
+FI.kind={id:'kind',es:'Accesorio',en:'Accessory',def:'cola-scrunchie',o:KINDS,chips:true,box:'kindBox'};
+const RATIO_FOR={catalogo:'45',tienda:'11',post:'45',historia:'916',pinterest:'23',banner:'169',campana:'32'};
+
+/* ---------- Render ---------- */
+function makeSelect(f,wrap){
+  const s=document.createElement('select');s.id=f.id;
+  let grp=null,last=null;
+  for(const o of f.o){
+    let parent=s;
+    if(o.g){if(o.g!==last){grp=document.createElement('optgroup');grp.label=o.g;s.append(grp);last=o.g;}parent=grp;}
+    const op=document.createElement('option');op.value=o.k;op.textContent=o.ui||cap(o.es);parent.append(op);
+  }
+  s.value=f.def;wrap.append(s);
+}
+function makeChips(f,box){
+  const fs=document.createElement('fieldset');
+  const lg=document.createElement('legend');lg.className=f.id==='kind'?'vh':'legend';lg.textContent=f.es;lg.style.marginBottom='10px';fs.append(lg);
+  const groups=f.id==='kind'?[['Colas para el cabello',o=>o.tags.includes('cola')],['Diademas',o=>!o.tags.includes('cola')]]:[[null,()=>true]];
+  for(const [title,test] of groups){
+    const g=document.createElement('div');g.className='kindgroup';
+    if(title){const t=document.createElement('span');t.className='legend';t.textContent=title;g.append(t);}
+    const c=document.createElement('div');c.className='chips';
+    for(const o of f.o.filter(test)){
+      const l=document.createElement('label');l.className='chip';l.dataset.k=o.k;
+      const i=document.createElement('input');i.type='radio';i.name=f.id;i.value=o.k;if(o.k===f.def)i.checked=true;
+      const sp=document.createElement('span');sp.textContent=cap(o.es);
+      l.append(i,sp);c.append(l);
+    }
+    g.append(c);fs.append(g);
+  }
+  box.append(fs);
+}
+for(const f of [FI.kind,...F]){
+  const box=$(f.box);
+  if(f.chips){makeChips(f,box);continue;}
+  const wrap=document.createElement('div');wrap.className='field'+(f.full?' full':'');wrap.id='w-'+f.id;
+  const lab=document.createElement('label');lab.htmlFor=f.id;lab.textContent=f.es;wrap.append(lab);
+  if(f.type==='text'){const i=document.createElement('input');i.type='text';i.id=f.id;i.maxLength=600;i.placeholder=f.ph||'';wrap.append(i);}
+  else if(f.type==='number'){const i=document.createElement('input');i.type='number';i.id=f.id;i.min='1';i.max='110';i.step='1';i.inputMode='numeric';i.placeholder=f.ph||'';i.setAttribute('aria-describedby','ageHint');wrap.append(i);const h=document.createElement('p');h.className='hint';h.id='ageHint';h.textContent='Número entero de 1 a 110.';wrap.append(h);}
+  else makeSelect(f,wrap);
+  box.append(wrap);
+}
+
+/* ---------- Estado ---------- */
+const OPT_IDS=['kind',...F.filter(f=>f.o).map(f=>f.id)];
+const TXT_IDS=F.filter(f=>f.type==='text'||f.type==='number').map(f=>f.id).concat('extra');
+const CHECK_IDS=['refs','hero','natural','noText'];
+function get(id){const f=FI[id];if(f.chips){const c=document.querySelector('input[name="'+id+'"]:checked');return c?c.value:f.def;}return $(id).value;}
+function set(id,k){const f=FI[id];if(f.chips){const i=document.querySelector('input[name="'+id+'"][value="'+k+'"]');if(i)i.checked=true;return;}if(f.o.some(o=>o.k===k))$(id).value=k;}
+function opt(id){const k=get(id);return FI[id].o.find(o=>o.k===k);}
+function exactAge(){const v=$('exactAge').value.trim();if(v==='')return null;const n=Number(v);return Number.isInteger(n)&&n>=1&&n<=110?n:null;}
+function ageNum(){const e=exactAge();return e!==null?e:opt('age').min;}
+const isMinor=()=>ageNum()<18, isBaby=()=>ageNum()<3;
+function category(){const t=opt('kind').tags;return t.includes('cola')?'cola':t.includes('aro')?'aro':'cinta';}
+function allowed(o){const m=isMinor(),b=isBaby(),c=category()==='cola',t=o.tags;
+  if(t.includes('A')&&m)return false;if(t.includes('K')&&!m)return false;
+  if(t.includes('N')&&b)return false;if(t.includes('B')&&!b)return false;
+  if(t.includes('C')&&!c)return false;if(t.includes('D')&&c)return false;return true;}
+
+/* Oculta opciones no válidas y corrige selecciones incompatibles */
+function normalize(){
+  const changed=[];
+  for(const id of OPT_IDS){
+    const f=FI[id];if(id==='age'||id==='kind')continue;
+    if(f.chips){for(const l of $(f.box).querySelectorAll('.chip')){const o=f.o.find(x=>x.k===l.dataset.k);const ok=allowed(o);l.hidden=!ok;l.querySelector('input').disabled=!ok;}}
+    else{const s=$(id);for(const op of s.options){const ok=allowed(f.o.find(x=>x.k===op.value));op.hidden=!ok;op.disabled=!ok;}for(const g of s.querySelectorAll('optgroup'))g.hidden=[...g.children].every(x=>x.hidden);}
+    if(f.adult){$('w-'+id).hidden=isMinor();}
+    if(!allowed(opt(id))){const first=f.o.find(o=>o.k===f.def&&allowed(o))||f.o.find(allowed);set(id,first.k);changed.push(f.es.toLowerCase());}
+  }
+  return changed;
+}
+
+/* ---------- Construcción del prompt ---------- */
+function v(id){const f=FI[id];if(!f)return $(id).value.trim();if(f.o){const o=opt(id);if(!o||o.k==='none')return '';if(f.adult&&isMinor())return '';return id==='age'?'':(lang==='en'?o.en:o.es);}return $(id).value.trim();}
+const KEEP_LABEL=['skin','face','eyes','size','clothesColor','gaze'];
+function list(ids){return ids.map(id=>[id,v(id)]).filter(x=>x[1]).map(([id,val])=>mode==='short'?(KEEP_LABEL.includes(id)?T(FI[id].es.toLowerCase(),FI[id].en.toLowerCase())+' '+val:val):T(FI[id].es.replace(/ \(opcional\)$/,''),FI[id].en)+': '+val);}
+function joinS(a){return a.join(mode==='short'?', ':'; ');}
+function subject(){
+  const e=exactAge(),a=ageNum(),m=isMinor();
+  if(e!==null){
+    if(!m)return T('una mujer de '+e+' años','a '+e+'-year-old woman');
+    const w=a<3?T('bebé','toddler girl'):a<13?T('niña','girl'):T('adolescente','teenage girl');
+    return T('una '+w+' de '+e+' años','a '+e+'-year-old '+w);
+  }
+  const o=opt('age');return lang==='en'?o.en:o.es;
+}
+function nouns(){const c=category();return c==='cola'?{es:'la cola',Es:'La cola',en:'the hair tie',w:'hair tie'}:{es:'la diadema',Es:'La diadema',en:'the headband',w:'headband'};}
+
+function build(){
+  const fixed=normalize();
+  const m=isMinor(),b=isBaby(),c=category(),N=nouns(),refs=$('refs').checked,short=mode==='short';
+  $('minorNote').hidden=!m;
+  $('langNote').hidden=lang!=='en';
+  $('hairHelp').textContent=c==='cola'?'Peinados recogidos donde la cola sujeta el cabello.':c==='aro'?'Diadema de aro: cabello suelto o semirrecogido. Mejor con ángulo frontal, tres cuartos o perfil; desde atrás casi no se ve.':'Diadema tipo cinta: rodea la cabeza y pasa bajo el cabello en la nuca. Combina con cabello suelto o recogido bajo.';
+  const ko=opt('kind');const kindTxt=lang==='en'?(/^[aeiou]/i.test(ko.en)?'an ':'a ')+ko.en:(ko.es.startsWith('elástico')?'un ':'una ')+ko.es;
+  const out=[];
+
+  // 1. Encargo
+  if(m){
+    out.push(T('Crea UNA fotografía de catálogo familiar para una marca de accesorios para el cabello tejidos a mano. Muestra a '+subject()+', una persona ficticia, que lleva puesta en el cabello '+kindTxt+'. Escena cotidiana, luminosa y apropiada para su edad; el objetivo es mostrar cómo se ve el accesorio puesto en el peinado.',
+                'Create ONE family-friendly catalog photograph for a brand of hand-knitted hair accessories. Show '+subject()+', a fictional person, wearing '+kindTxt+' in her hair. Everyday, bright, age-appropriate scene; the goal is to show how the accessory looks in the hairstyle.'));
+  } else {
+    out.push(T('Genera UNA fotografía comercial fotorrealista para una marca de accesorios artesanales tejidos a mano. Muestra a '+subject()+', una modelo ficticia, que lleva puesta en el cabello '+kindTxt+'. El accesorio es el protagonista.',
+                'Generate ONE photorealistic commercial photograph for a brand of hand-knitted artisanal accessories. Show '+subject()+', a fictional model, wearing '+kindTxt+' in her hair. The accessory is the main subject.'));
+  }
+  if(refs)out.push(T('Adjunto fotos del producto. Úsalas solo como referencia del accesorio y reprodúcelo con fidelidad: color, forma, puntos del tejido, adornos, grosor y proporciones. No lo rediseñes ni inventes adornos que no se vean. Si alguna opción de este texto contradice las fotos, manda la foto. La persona es nueva y ficticia: no copies a nadie que aparezca en las fotos.',
+                      'I am attaching photos of the product. Use them only as a reference for the accessory and reproduce it faithfully: color, shape, stitches, embellishments, thickness and proportions. Do not redesign it or invent details that are not visible. If any option in this text conflicts with the photos, follow the photos. The person is new and fictional: do not copy anyone who appears in the photos.'));
+
+  // 2. Objetivo visual
+  const goal={
+    cola:T('que la persona lleva puesta una cola tejida a mano y cómo se usa: rodea y sujeta el cabello justo donde se recoge el peinado. No debe confundirse con una mancha de color, un mechón teñido, una flor suelta ni un adorno sin función.','that the person is wearing a hand-knitted hair tie and how it is used: it wraps around and holds the hair right where the hairstyle is gathered. It must not read as a patch of color, a dyed strand, a loose flower or a purely decorative ornament.'),
+    aro:T('que la persona lleva puesta una diadema de aro y cómo se usa: un arco que pasa por encima de la cabeza, apoyado sobre el cabello detrás de la línea de nacimiento, con los extremos ocultos detrás de las orejas o bajo el cabello. No debe confundirse con una cinta en la frente, una corona, un mechón teñido ni un adorno flotante.','that the person is wearing an alice band and how it is used: an arc over the top of the head, resting on the hair behind the hairline, with the ends tucked behind the ears or under the hair. It must not read as a forehead band, a crown, a dyed strand or a floating ornament.'),
+    cinta:T('que la persona lleva puesta una diadema tejida tipo cinta y cómo se usa: una banda que rodea la cabeza, pasa por delante sobre la línea del cabello o justo detrás, y continúa bajo el cabello en la nuca. No debe confundirse con un gorro, una bufanda, un vendaje ni un mechón teñido.','that the person is wearing a knitted headband and how it is used: a band that wraps around the head, crosses the front at or just behind the hairline, and continues under the hair at the nape. It must not read as a hat, a scarf, a bandage or a dyed strand.')
+  }[c];
+  if(short)out.push(T('Objetivo: que se vea claramente '+N.es+' puesta y cómo se usa; color y forma reconocibles aunque no se distinga cada punto.','Goal: clearly show '+N.en+' being worn and how it is used; color and shape recognizable even if individual stitches are not.'));
+  else out.push(T('OBJETIVO VISUAL: Que se entienda a primera vista ','VISUAL GOAL: Make it clear at first glance ')+goal+T(' La pieza debe reconocerse por su silueta, color, volumen y posición aunque los puntos del tejido no se distingan a esa distancia. Si hay que elegir, prioriza que se entienda el uso y que coincidan color y forma antes que el detalle fino del tejido.',' The piece must be recognizable by its silhouette, color, volume and position even if the stitches are not discernible at that distance. If a trade-off is needed, prioritize showing how it is worn and matching color and shape over fine stitch detail.'));
+
+  // 3. Producto
+  let prod=T('PRODUCTO: ','PRODUCT: ')+joinS(list(['technique','fiber','colors','pattern','ornament','size','description']));
+  if(v('preserve'))prod+=(short?', ':'. ')+T('Imprescindible: ','Must keep: ')+v('preserve');
+  prod+='.';
+  if(!short)prod+=' '+T('Debe notarse que es tejido artesanal en lana: puntos visibles, ligera pelusilla natural de la fibra, volumen suave y acabado mate. No debe parecer tela sintética brillante, plástico, cuero ni un estampado plano.','It must read as handmade knitwear: visible stitches, a slight natural fuzz of the fiber, soft volume and a matte finish. It must not look like shiny synthetic fabric, plastic, leather or a flat print.');
+  if(b&&!short)prod+=' '+T('La pieza va a escala de bebé: pequeña, suave y cómoda.','The piece is baby-sized: small, soft and comfortable.');
+  out.push(prod);
+
+  // 4. Persona
+  let per=(m?T('PERSONA: ','PERSON: '):T('MODELO: ','MODEL: '))+cap(subject())+(short?', ':'. ')+joinS(list(['heritage','skin','face','eyes','features','build','expression','gaze','makeup','glasses','jewelry','modelExtra']))+'.';
+  if(!short)per+=' '+(m?T('Rostro natural, sin maquillaje, con la expresión espontánea propia de su edad.','Natural bare face with a spontaneous, age-typical expression.'):T('Rasgos reales y propios de su edad, sin caricaturas ni estereotipos.','Real, age-appropriate features without caricature or stereotypes.'));
+  out.push(per);
+
+  // 5. Cabello
+  let hair=T('CABELLO: ','HAIR: ')+joinS(list(['hairColor','texture','length','volume','style','finish','hairExtra']))+'.';
+  if(!short){
+    hair+=' '+{
+      cola:T('La cola sujeta el peinado de forma física y anatómicamente creíble, bien asentada alrededor del cabello recogido. Si el largo no permite ese peinado, adáptalo con el mínimo cambio necesario.','The hair tie holds the hairstyle in a physically and anatomically believable way, seated snugly around the gathered hair. If the length does not allow that style, adapt it minimally.'),
+      aro:T('La diadema se apoya sobre la cabeza, detrás de la línea del cabello y hacia la coronilla, con los extremos tras las orejas o bajo el cabello; ni flota sobre el cabello ni se hunde en él.','The headband rests on the head, behind the hairline toward the crown, with the ends behind the ears or under the hair; it neither floats above the hair nor sinks into it.'),
+      cinta:T('La cinta rodea la cabeza con ajuste natural, sin cubrir cejas ni ojos, con el cabello visible por arriba y por detrás.','The band wraps around the head with a natural fit, without covering the eyebrows or eyes, with hair visible above and behind it.')
+    }[c];
+  }
+  out.push(hair);
+
+  // 6. Ropa y pose
+  let pose=T('ROPA Y POSE: ','CLOTHING AND POSE: ')+joinS(list(['clothes','clothesColor','pose']))+'.';
+  if(m)pose+=' '+T('Ropa cotidiana apropiada para su edad, holgada y opaca, con mangas y cuello redondo.','Everyday age-appropriate clothing, loose and opaque, with sleeves and a crew neck.');
+  if(!short)pose+=' '+T('Si aparecen las manos, que tengan anatomía correcta y no tapen el accesorio.','If hands appear, they have correct anatomy and do not cover the accessory.');
+  out.push(pose);
+
+  // 7. Ambiente
+  let scene=T('AMBIENTE: ','SETTING: ')+joinS(list(['background','season','timeofday','props','palette','mood','sceneExtra']))+'.';
+  if(m)scene+=' '+T('Ambiente familiar y cotidiano.','Family-friendly everyday atmosphere.');
+  out.push(scene);
+
+  // 8. Fotografía
+  let photo=T('FOTOGRAFÍA: ','PHOTOGRAPHY: ')+joinS(list(['purpose','framing','angle','camera','lighting','dof','composition','ratio']))+'.';
+  if(!short){
+    if(c==='aro'&&['tqp','posterior'].includes(get('angle')))photo+=' '+T('Una diadema de aro casi no se ve desde atrás: gira la cabeza lo necesario para que se vea el arco.','An alice band is barely visible from behind: turn the head just enough to show the arc.');
+    photo+=' '+T('Si el ángulo o la pose ocultan '+N.es+', ajusta la cabeza o la cámara para mostrarla con claridad. Usa también esta relación de aspecto en los ajustes de la IA si existen.','If the angle or pose hides '+N.en+', adjust the head or camera to show it clearly. Also set this aspect ratio in the AI settings if available.');
+  }
+  out.push(photo);
+
+  // 9. Calidad
+  const q=[];
+  if($('hero').checked)q.push(short?T(N.es+' completa y nítida',N.en+' complete and sharp'):T(N.Es+' debe verse completa, nítida y separada del fondo; ni manos ni cabello la ocultan.','Show the whole '+N.w+' sharp and distinct from the background; neither hands nor hair hide it.'));
+  if($('natural').checked)q.push(short?T('piel y cabello naturales','natural skin and hair'):T('Piel y cabello con textura real y rasgos propios de la edad; sin piel plástica ni retoque excesivo.','Real skin and hair texture with age-appropriate features; no plastic skin or heavy retouching.'));
+  if($('noText').checked)q.push(short?T('sin texto ni logotipos','no text or logos'):T('Sin texto, marcas de agua ni logotipos.','No text, watermarks or logos.'));
+  q.push(short?T('una sola pieza, sin duplicados ni deformaciones, color fiel','a single piece, no duplicates or distortion, accurate color'):T('Una sola pieza: sin accesorios duplicados o deformados, sin cabello fusionado con la lana, color fiel y sin filtros que lo alteren. La fidelidad del producto pesa más que el efecto artístico.','A single piece: no duplicated or distorted accessories, no hair merging into the yarn, accurate color with no color-shifting filters. Product fidelity matters more than artistic effect.'));
+  out.push((short?T('Calidad: ','Quality: ')+q.join(', ')+'.':T('CONTROL DE CALIDAD: ','QUALITY CONTROL: ')+q.join(' ')));
+  if(v('extra'))out.push(T('ADICIONAL: ','ADDITIONAL: ')+v('extra'));
+
+  $('prompt').value=out.join(short?'\n':'\n\n');
+  count();summary();
+  return fixed;
+}
+function count(){const n=$('prompt').value.length;$('count').textContent=n.toLocaleString('es')+' caracteres';}
+function summary(){
+  const items=[cap(opt('kind').es),exactAge()!==null?exactAge()+' años':opt('age').ui,cap(opt('pose').es),cap(opt('background').es),opt('ratio').es];
+  const ul=$('summary');ul.replaceChildren(...items.map(t=>{const li=document.createElement('li');li.textContent=t;return li;}));
+}
+
+/* ---------- Persistencia ---------- */
+function state(){return {v:2,lang,mode,values:Object.fromEntries(OPT_IDS.map(id=>[id,get(id)])),texts:Object.fromEntries(TXT_IDS.map(id=>[id,$(id).value])),checks:Object.fromEntries(CHECK_IDS.map(id=>[id,$(id).checked]))};}
+function applyState(s){
+  if(!s||s.v!==2)return false;
+  for(const id of OPT_IDS)if(typeof s.values?.[id]==='string')set(id,s.values[id]);
+  for(const id of TXT_IDS)if(typeof s.texts?.[id]==='string')$(id).value=s.texts[id].slice(0,1600);
+  for(const id of CHECK_IDS)if(typeof s.checks?.[id]==='boolean')$(id).checked=s.checks[id];
+  lang=s.lang==='en'?'en':'es';mode=s.mode==='short'?'short':'full';
+  document.querySelector('input[name=lang][value='+lang+']').checked=true;
+  document.querySelector('input[name=mode][value='+mode+']').checked=true;
+  return true;
+}
+function persist(){try{localStorage.setItem('lazo-current-v2',JSON.stringify(state()));$('status').textContent='Guardado en este navegador';}catch{$('status').textContent='Se actualiza al elegir';}}
+function update(){const fixed=build();persist();if(fixed.length)toast('Ajusté '+fixed.join(', ')+' para que sea compatible con tu elección.');}
+
+/* ---------- UI ---------- */
+function toast(msg){const t=$('toast');t.textContent=msg;t.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{t.hidden=true;},4200);}
+function clearPresets(){document.querySelectorAll('#presets .btn').forEach(b=>b.setAttribute('aria-pressed','false'));}
+
+const PRESETS={
+ 'Catálogo limpio':{age:'a25',background:'st-cream',lighting:'neutra',camera:'85',framing:'hombros',angle:'tqf',pose:'turn',purpose:'catalogo',mood:'minimal',props:'none',season:'none',timeofday:'none'},
+ 'Taller artesanal':{age:'a35',background:'in-workshop',lighting:'ventana',pose:'knitting',props:'ovillos',mood:'artesanal',framing:'medio',angle:'tqf',purpose:'post'},
+ 'Hogar acogedor':{age:'a25',background:'in-living',season:'frio',lighting:'ventana',pose:'reading',clothes:'sweater',mood:'hygge',purpose:'post'},
+ 'Naturaleza tica':{age:'a18',background:'out-coffee',season:'nublado',timeofday:'manana',lighting:'sombra',pose:'walking',mood:'artesanal',camera:'50',purpose:'campana'},
+ 'Hora dorada':{age:'a25',background:'out-field',timeofday:'dorada',lighting:'dorada',pose:'shoulder',mood:'romantico',camera:'film'},
+ 'Historia 9:16':{purpose:'historia',ratio:'916',camera:'movil',framing:'medio',pose:'laugh',mood:'alegre',background:'out-park'},
+ 'Bebé':{age:'b1',background:'in-living',pose:'blanket',clothes:'romper',lighting:'ventana',mood:'acogedor',framing:'hombros',props:'manta'},
+ 'Infantil':{age:'c6',background:'out-park',pose:'laugh',clothes:'sweater',lighting:'sombra',mood:'alegre',framing:'hombros',angle:'tqf'},
+ 'Adolescente':{age:'t13',background:'in-reading',pose:'studying',clothes:'cardigan',lighting:'ventana',mood:'alegre',framing:'hombros'},
+ 'Mujer mayor':{age:'o65',features:'arrugas',hairColor:'plata',background:'in-living',pose:'knitting',props:'ovillos',lighting:'ventana',mood:'acogedor'}
+};
+for(const [name,vals] of Object.entries(PRESETS)){
+  const b=document.createElement('button');b.type='button';b.className='btn';b.textContent=name;b.setAttribute('aria-pressed','false');
+  b.addEventListener('click',()=>{$('exactAge').value='';for(const [k,x] of Object.entries(vals))set(k,x);if(vals.purpose&&!vals.ratio)set('ratio',RATIO_FOR[vals.purpose]);build();for(const [k,x] of Object.entries(vals))set(k,x);clearPresets();b.setAttribute('aria-pressed','true');update();toast('Punto de partida «'+name+'» aplicado.');});
+  $('presets').append(b);
+}
+
+$('form').addEventListener('submit',e=>e.preventDefault());
+$('form').addEventListener('change',e=>{
+  const id=e.target.name||e.target.id;
+  if(id==='exactAge')return;
+  clearPresets();
+  if(id==='purpose'){set('ratio',RATIO_FOR[get('purpose')]);toast('Formato ajustado a '+opt('ratio').es+' para este uso. Puedes cambiarlo.');}
+  if(id==='kind'&&category()==='aro'&&['tqp','posterior'].includes(get('angle'))){set('angle','tqf');toast('Cambié el ángulo a tres cuartos frontal: una diadema de aro casi no se ve desde atrás.');}
+  update();
+});
+$('form').addEventListener('input',e=>{if(e.target.matches('input[type=text],textarea'))update();});
+$('exactAge').addEventListener('input',()=>{const el=$('exactAge');const bad=el.value.trim()!==''&&exactAge()===null;el.setAttribute('aria-invalid',String(bad));$('ageHint').textContent=bad?'Escribe un número entero de 1 a 110.':exactAge()!==null?'Se usará la edad exacta en lugar del grupo.':'Número entero de 1 a 110.';if(!bad)update();});
+
+for(const r of document.querySelectorAll('input[name=lang]'))r.addEventListener('change',()=>{lang=r.value;update();});
+for(const r of document.querySelectorAll('input[name=mode]'))r.addEventListener('change',()=>{mode=r.value;update();});
+$('prompt').addEventListener('input',()=>{count();$('status').textContent='Editado a mano · cambiar una opción lo regenera';});
+$('regen').addEventListener('click',()=>{update();toast('Prompt regenerado con tus opciones.');});
+
+async function copyPrompt(){
+  const t=$('prompt');
+  try{await navigator.clipboard.writeText(t.value);toast($('refs').checked?'Prompt copiado. Recuerda adjuntar las fotos del producto en la IA.':'Prompt copiado.');}
+  catch{t.focus();t.select();let ok=false;try{ok=document.execCommand('copy');}catch{}toast(ok?'Prompt copiado.':'Texto seleccionado: pulsa Ctrl/Cmd + C para copiar.');}
+}
+$('copy').addEventListener('click',copyPrompt);$('copy2').addEventListener('click',copyPrompt);
+$('download').addEventListener('click',()=>{const u=URL.createObjectURL(new Blob([$('prompt').value],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=u;a.download='prompt-'+(category()==='cola'?'cola':'diadema')+'-'+lang+'.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);});
+
+$('backView').addEventListener('click',()=>{set('angle','tqp');set('pose','backview');if(category()==='aro')set('angle','perfil');update();toast(category()==='aro'?'Vista de perfil y pose de espaldas aplicadas (la diadema de aro no se ve desde atrás).':'Vista de espaldas aplicada.');});
+
+const RANDOM_IDS=['heritage','skin','expression','gaze','build','makeup','face','eyes','features','glasses','jewelry','hairColor','texture','length','volume','style','finish','pose','clothes','clothesColor','background','season','timeofday','props','palette','mood','framing','angle','camera','lighting','dof','composition'];
+$('surprise').addEventListener('click',()=>{
+  normalize();
+  for(const id of RANDOM_IDS){const pool=FI[id].o.filter(allowed);set(id,pool[Math.floor(Math.random()*pool.length)].k);}
+  if(category()==='aro'&&['tqp','posterior'].includes(get('angle')))set('angle','tqf');
+  if(get('features')==='arrugas'&&ageNum()<55)set('features','none');
+  if(['sal','plata','blanco'].includes(get('hairColor'))&&ageNum()<45)set('hairColor','castosc');
+  clearPresets();update();toast('Nueva combinación al azar. Tu producto y la edad no cambiaron.');
+});
+
+const DEFAULTS=state();
+$('reset').addEventListener('click',()=>{applyState(DEFAULTS);clearPresets();$('ageHint').textContent='Número entero de 1 a 110.';update();toast('Opciones restablecidas. Tus combinaciones guardadas siguen disponibles.');});
+
+function saved(){try{const a=JSON.parse(localStorage.getItem('lazo-saved-v2')||'[]');return Array.isArray(a)?a:[];}catch{return [];}}
+function listSaved(){const s=$('savedList'),a=saved();s.replaceChildren(new Option(a.length?'Mis combinaciones':'Aún no hay combinaciones',''));a.forEach((x,i)=>s.add(new Option(String(x.name),String(i))));$('load').disabled=$('del').disabled=!a.length;}
+$('save').addEventListener('click',()=>{const name=$('saveName').value.trim();if(!name){toast('Escribe un nombre para la combinación.');$('saveName').focus();return;}const a=saved();if(a.length>=40){toast('Llegaste a 40 combinaciones. Elimina alguna para guardar otra.');return;}a.push({name,state:state()});try{localStorage.setItem('lazo-saved-v2',JSON.stringify(a));listSaved();$('savedList').value=String(a.length-1);toast('Combinación «'+name+'» guardada.');}catch{toast('Este navegador no permite guardar. Puedes descargar el prompt.');}});
+$('load').addEventListener('click',()=>{const k=$('savedList').value;if(k===''){toast('Elige una combinación de la lista.');return;}const it=saved()[Number(k)];if(it&&applyState(it.state)){$('saveName').value=it.name;clearPresets();update();toast('Combinación «'+it.name+'» cargada.');}});
+$('del').addEventListener('click',()=>{const k=$('savedList').value;if(k===''){toast('Elige una combinación de la lista.');return;}const a=saved();const [it]=a.splice(Number(k),1);try{localStorage.setItem('lazo-saved-v2',JSON.stringify(a));listSaved();toast('Combinación «'+it.name+'» eliminada.');}catch{toast('No se pudo eliminar.');}});
+
+try{applyState(JSON.parse(localStorage.getItem('lazo-current-v2')));}catch{}
+listSaved();build();
+</script>
+</body>
+</html>
